@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
@@ -28,11 +30,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  */
 public class EventFragment extends Fragment {
 
-    Button button;
+
     public EventFragment() {
         // Required empty public constructor
     }
-
+    private RecyclerView eventsList;
+    private EventRecyclerViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,17 +44,19 @@ public class EventFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
+        //RecyclerView
+        eventsList = view.findViewById(R.id.event_list);
+        eventsList.setHasFixedSize(true);
+        eventsList.setLayoutManager(new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false));
+        adapter = new EventRecyclerViewAdapter(getContext());
+        eventsList.setAdapter(adapter);
+
+
         //Action Bar
         eventActionBar(view);
-        button= view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
-                , new Event_Page()).addToBackStack(null).commitAllowingStateLoss();
-            }
-        });
+
+
 
         return view;
     }
