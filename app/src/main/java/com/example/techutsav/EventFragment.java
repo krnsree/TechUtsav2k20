@@ -55,9 +55,6 @@ public class EventFragment extends Fragment {
         //Action Bar
         eventActionBar(view);
 
-
-
-
         return view;
     }
 

@@ -48,20 +48,5 @@ public class Event_Page extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.GONE);
-        registerBt = view.findViewById(R.id.register_bt);
-        registerBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dialog mBottomSheetDialog = new Dialog(getContext());
-                View sheetView = getLayoutInflater().inflate(R.layout.names_layout, null);
-                mBottomSheetDialog.setContentView(sheetView);
-                mBottomSheetDialog.show();
-
-                Button add = sheetView.findViewById(R.id.add_bt);
-                EditText name = sheetView.findViewById(R.id.name_participant);
-
-
-            }
-        });
     }
 }
