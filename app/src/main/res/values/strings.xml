@@ -4,7 +4,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     //Bottom nav
     <string name="bottom_nav_event">Events</string>
     <string name="bottom_nav_gallery">Gallery</string>

@@ -11,5 +11,7 @@
     <color name="placeHolderColor">#90A4AE</color>
 
 
-    #955885
+    <color name="random">#00ACC1</color>
+    <color name="ran">#007887</color>
+    <color name="r1">#111112</color>
 </resources>
