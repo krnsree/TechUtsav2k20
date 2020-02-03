@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "46171915720",
+    "firebase_url": "https://techustav.firebaseio.com",
+    "project_id": "techustav",
+    "storage_bucket": "techustav.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46171915720:android:7177072443eeb0ed6becfd",
+        "android_client_info": {
+          "package_name": "com.example.techutsav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46171915720-bdh2pc0sgs0chcpnubkb2c5830eqlnp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu8d-42f5RmvxcQuz9aNiAl1tmvqeYEKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46171915720-bdh2pc0sgs0chcpnubkb2c5830eqlnp0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
