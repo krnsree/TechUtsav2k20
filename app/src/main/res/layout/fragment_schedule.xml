@@ -3,17 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlumniFragment">
+    android:orientation="vertical"
+    tools:context=".ScheduleFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/alumni_title"
-        android:textAlignment="center"
-        android:layout_margin="26dp"
-        android:padding="12dp"
-        android:textStyle="bold"
-        android:textSize="46sp"/>
+        android:layout_height="match_parent"
+        android:text="Schedule"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

@@ -131,14 +131,17 @@ public class EventFragment extends Fragment {
         switch (item.getItemId()) {
 
             case R.id.event_action_schedule:
-                break;
+                ((NavigationHost)getActivity()).navigateTo(new ScheduleFragment(), true);
+                 return true;
             case R.id.event_action_info:
-                break;
-
+                ((NavigationHost)getActivity()).navigateTo(new InfoFragment(),true);
+                return true;
+            case R.id.event_action_registration:
+                ((NavigationHost)getActivity()).navigateTo(new RegistrationFragment(), true);
+                return  true;
         }
 
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 

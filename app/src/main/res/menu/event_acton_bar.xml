@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/event_action_schedule"
+        android:enabled="true"
+        android:icon="@drawable/top_nav_schedule"
+        android:title="@string/top_nav_schedule"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/event_action_registration"
+        android:icon="@drawable/top_nav_registration_icon"
+        android:title="@string/top_nav_registration" />
+
 
     <item
         android:id="@+id/event_action_info"
         android:title="@string/top_nav_info" />
-    <item
-        android:id="@+id/event_action_schedule"
-        android:enabled="false"
-        android:icon="@drawable/top_nav_schedule"
-        android:title="@string/top_nav_schedule"
-        android:visible="true"
-        app:showAsAction="always"
-        tools:ignore="UnusedAttribute" />
+
 </menu>

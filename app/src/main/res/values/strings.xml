@@ -12,7 +12,21 @@
 
     //Top Nav
     <string name="top_nav_schedule">Schedule</string>
-    <string name="top_nav_info">Info</string>
+    <string name="top_nav_info">Developer</string>
+    <string name="top_nav_registration">Registration Info</string>
+
+
+    //TextPlaceHolder
+    <string name="event_name_placeholder">EventName</string>
+
+    //Gallery
+    <string name="gallery_title">Gallery</string>
+
+    //Alumni
+    <string name="alumni_title">Alumni</string>
+
+    //About
+    <string name="about_title">About</string>
 
 
 </resources>
