@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#007887</color>
+    <color name="colorPrimary">#085078</color>
     <color name="colorPrimaryDark">#007887</color>
     <color name="colorAccent">#0D47A1</color>
 
@@ -11,7 +11,4 @@
     <color name="placeHolderColor">#90A4AE</color>
 
 
-    <color name="random">#00ACC1</color>
-    <color name="ran">#007887</color>
-    <color name="r1">#111112</color>
 </resources>

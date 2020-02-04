@@ -75,11 +75,13 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
                       getSupportFragmentManager()
                       .beginTransaction()
                       .replace(R.id.mainFrame, fragment);
+                       transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 
                 if(backStack){
 
                     transaction.addToBackStack(null);
                 }
+
 
                 transaction.commit();
     }
