@@ -1,6 +1,8 @@
 package com.example.techutsav;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,47 +10,63 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.VIewHolder> {
 
     Context context;
     List<EventDataCell> eventList;
+    FragmentActivity activity;
 
+    public EventRecyclerViewAdapter(List<EventDataCell> eventList, Context context, FragmentActivity activity) {
 
-    public EventRecyclerViewAdapter(List<EventDataCell> eventList, Context context) {
-
+        this.activity = activity;
         this.eventList = eventList;
         this.context = context;
     }
 
 
-
-
     @NonNull
     @Override
     public VIewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View cardView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card_view,parent,false);
-        context = parent.getContext();
+        View cardView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card_view, parent, false);
         return new EventRecyclerViewAdapter.VIewHolder(cardView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VIewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull VIewHolder holder, final int position) {
 
         holder.eventTitle.setText(eventList.get(position).getName());
+        Glide.with(context)
+                .load(eventList.get(position).getImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transition(withCrossFade())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.eventImage);
 
-        String ImageUrl = eventList.get(position).getImageUrl();
-        holder.setEventImage(ImageUrl);
-
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Gson gson = new Gson();
+                String list = gson.toJson(eventList.get(position));
+                Bundle bundle = new Bundle();
+                bundle.putString("EVENT_DATA", list);
+                Event_Page event_page = new Event_Page(context);
+                event_page.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
+                , event_page ).addToBackStack(null).commitAllowingStateLoss();
+            }
+        });
     }
 
 
@@ -59,28 +77,16 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     public class VIewHolder extends RecyclerView.ViewHolder {
 
-        String eventImage;
+        ImageView eventImage;
         TextView eventTitle;
-        View view;
-
-
 
         public VIewHolder(@NonNull View itemView) {
             super(itemView);
 
-            view = itemView;
             eventTitle = itemView.findViewById(R.id.event_frag_title);
-
-
-        }
-
-        public void setEventImage(String eventImage) {
-            this.eventImage = eventImage;
-            ImageView image_event_finder = itemView.findViewById(R.id.event_frag_image_view);
-            Glide.with(context)
-                    .load(eventImage)
-                    .into(image_event_finder);
-
+            eventImage = itemView.findViewById(R.id.event_frag_image_view);
         }
     }
 }
+
+

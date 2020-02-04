@@ -1,17 +1,18 @@
 package com.example.techutsav;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventDataCell {
 
 
-    String name;
-    String date;
-    String description;
-    String eventId;
-    String imageUrl;
-    String time;
-    List<String> topic;
+    private String name;
+    private String date;
+    private String description;
+    private String eventId;
+    private String imageUrl;
+    private String time;
+    private ArrayList<String> topic;
 
 
     public String getName() {
@@ -62,12 +63,12 @@ public class EventDataCell {
         this.time = time;
     }
 
-    public List<String> getTopic() {
+    public ArrayList<String> getTopic() {
         return topic;
     }
 
-    public void setTopic(List<String> topic) {
-        this.topic = topic;
+    public void setTopic(ArrayList<String> topic) {
+        this.topic = (ArrayList<String>) topic;
     }
 
 

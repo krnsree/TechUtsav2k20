@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
-    android:background="@drawable/bg_color">
+    android:background="@drawable/back1">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -33,8 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@drawable/bg_color" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -115,106 +115,87 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="Topics"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/review_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-            <androidx.cardview.widget.CardView
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                app:cardCornerRadius="15dp">
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                shimmer:duration="800">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/details_place_holder" />
+            </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/topics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/poppins_light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/cordinator_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Co-ordinators Involved:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/cordinator_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/poppins_light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="175dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="Participant\n List" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginRight="16dp"
-                        android:fontFamily="@font/poppins_light"
-                        android:text="For Administrator:"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="16dp"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Participant List:"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/rounded_button"
-                            android:text="Click Here" />
+                <Button
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="Event\nResults" />
 
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginRight="16dp"
-                        android:fontFamily="@font/poppins_light"
-                        android:text="For Participants:"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="16dp"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Participant List:"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
-                            android:background="@drawable/rounded_button"
-                            android:text="Click Here" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 
