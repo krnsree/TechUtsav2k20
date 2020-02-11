@@ -19,11 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="#007887"
         android:fitsSystemWindows="true"
-        android:background="@drawable/bottom_nav_background"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
         android:fadeScrollbars="true"
         app:menu="@menu/bottom_nav_bar" />
 

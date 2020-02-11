@@ -24,6 +24,10 @@
 
     //Alumni
     <string name="alumni_title">Alumni</string>
+    <string name="alumni_name">Name</string>
+    <string name="alumni_designation">Designation</string>
+    <string name="alumni_quote">This is where the quote Go</string>
+
 
     //About
     <string name="about_title">About</string>

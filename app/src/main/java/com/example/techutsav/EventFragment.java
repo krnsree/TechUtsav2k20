@@ -70,6 +70,8 @@ public class EventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
         bottomNavigationView=getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.VISIBLE);
+
+
         //RecyclerView
         eventsList = view.findViewById(R.id.event_list);
         eventsList.setHasFixedSize(true);
@@ -80,12 +82,9 @@ public class EventFragment extends Fragment {
         pgbar=view.findViewById(R.id.rvprogressbar);
 
         //Action Bar
-
         eventActionBar(view);
 
 
-        //Recycler View Data
-        //isDataAvailable = false;
 
 
         return view;
