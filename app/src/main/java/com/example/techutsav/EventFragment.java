@@ -3,6 +3,14 @@ package com.example.techutsav;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,31 +19,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.fragment.app.FragmentManager;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+
+import io.grpc.internal.LogExceptionRunnable;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -59,16 +54,18 @@ public class EventFragment extends Fragment {
     private ProgressBar pgbar;
     private BottomNavigationView bottomNavigationView;
     //ListAdapter
-    ArrayList<EventDataCell> eventItems = new ArrayList<>();
+    private static ArrayList<EventDataCell> eventItems = new ArrayList<>();
+
+    ShimmerFrameLayout shimmerFrameLayout;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_event, container, false);
-        bottomNavigationView=getActivity().findViewById(R.id.main_bottom_nav);
+        bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.VISIBLE);
         //RecyclerView
         eventsList = view.findViewById(R.id.event_list);
@@ -77,7 +74,7 @@ public class EventFragment extends Fragment {
         adapter = new EventRecyclerViewAdapter(eventItems, getContext(), getActivity());
         eventsList.setAdapter(adapter);
 
-        pgbar=view.findViewById(R.id.rvprogressbar);
+        shimmerFrameLayout=view.findViewById(R.id.parentShimmerLayout);
 
         //Action Bar
 
@@ -87,6 +84,7 @@ public class EventFragment extends Fragment {
         //Recycler View Data
         //isDataAvailable = false;
 
+        getData();
 
         return view;
     }
@@ -94,8 +92,10 @@ public class EventFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "onPause: 5");
         //isDataAvailable = true;
-        getData();
+        /*shimmerFrameLayout=getActivity().findViewById(R.id.parentShimmerLayout);
+        shimmerFrameLayout.startShimmer();*/
 
     }
 
@@ -131,14 +131,14 @@ public class EventFragment extends Fragment {
         switch (item.getItemId()) {
 
             case R.id.event_action_schedule:
-                ((NavigationHost)getActivity()).navigateTo(new ScheduleFragment(), true);
-                 return true;
+                ((NavigationHost) getActivity()).navigateTo(new ScheduleFragment(), true);
+                return true;
             case R.id.event_action_info:
-                ((NavigationHost)getActivity()).navigateTo(new InfoFragment(),true);
+                ((NavigationHost) getActivity()).navigateTo(new InfoFragment(), true);
                 return true;
             case R.id.event_action_registration:
-                ((NavigationHost)getActivity()).navigateTo(new RegistrationFragment(), true);
-                return  true;
+                ((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
+                return true;
         }
 
         return false;
@@ -147,57 +147,63 @@ public class EventFragment extends Fragment {
 
     private void getData() {
 
+        shimmerFrameLayout.startShimmerAnimation();
         ref = FirebaseFirestore.getInstance();
 
-        if(eventItems!=null && eventItems.size()>0)
-            eventItems.clear();
+        if (eventItems != null && eventItems.size() > 0) {
+            isDataAvailable=false;
+            return;
+        } else {
+            ref.collection("Events")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-        ref.collection("Events")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
 
-                        if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    if (documentSnapshot.exists()) {
 
-                                if (documentSnapshot.exists()) {
+                                        EventDataCell dataCell = new EventDataCell();
+                                        dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
+                                        dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
+                                        dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
+                                        dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
+                                        dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
+                                        dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
+                                        if (documentSnapshot.get("topic") != null) {
+                                            ArrayList<String> list = (ArrayList<String>) documentSnapshot.get("topic");
 
-                                    EventDataCell dataCell = new EventDataCell();
-                                    dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
-                                    dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
-                                    dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
-                                    dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
-                                    dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
-                                    dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
-                                    if (documentSnapshot.get("topic") != null) {
-                                        ArrayList<String> list = (ArrayList<String>) documentSnapshot.get("topic");
+                                            for (String item : list) {
 
-                                        for(String item : list){
+                                                Log.e(TAG, "onComplete: " + item);
 
-                                            Log.e(TAG, "onComplete: "+item);
-
-                                        }
-                                        dataCell.setTopic(list);
+                                            }
+                                            dataCell.setTopic(list);
                                         /*for (String item : list) {
                                             Log.e(TAG, "onComplete: "+ Collections.singletonList(item));
                                             dataCell.setTopic(Collections.singletonList(item));
                                             Log.e(TAG, "onComplete: "+ dataCell.getTopic());
                                         }*/
-                                    }
+                                        }
 
-                                    eventItems.add(dataCell);
+                                        eventItems.add(dataCell);
+                                    }
                                 }
+
+                                adapter.notifyDataSetChanged();
+                                shimmerFrameLayout.stopShimmerAnimation();
+                                shimmerFrameLayout.setVisibility(View.GONE);
+
                             }
 
-                            adapter.notifyDataSetChanged();
-                            pgbar.setVisibility(View.GONE);
+
                         }
+                    });
 
-
-                    }
-                });
+        }
 
 
     }
@@ -225,24 +231,27 @@ public class EventFragment extends Fragment {
 
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
-        if(!isDataAvailable)
-            pgbar.setVisibility(View.GONE);
-        else
-            pgbar.setVisibility(View.VISIBLE);
+        if (!isDataAvailable) {
+            shimmerFrameLayout.stopShimmerAnimation();
+            shimmerFrameLayout.setVisibility(View.GONE);
+        }
+        else {
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            shimmerFrameLayout.startShimmerAnimation();
+        }
         Log.e(TAG, "onPause: 1");
 
     }
 
-    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         isDataAvailable = true;
         Log.e(TAG, "onPause: 0");
 
     }
-
 
 }

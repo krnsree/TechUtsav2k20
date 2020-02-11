@@ -1,8 +1,10 @@
 package com.example.techutsav;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,29 +20,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 
 public class Event_Page extends Fragment {
 
-    private static final String TAG ="" ;
+    private static final String TAG = "";
     @BindView(R.id.event_name)
     TextView eventName;
 
@@ -65,18 +63,50 @@ public class Event_Page extends Fragment {
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
-    @BindView(R.id.cordinator_list)
-    TextView cordinatorList;
-    private EventDataCell listData ;
+    @BindView(R.id.participantbtn)
+    Button ptbtn;
+
+    @BindView(R.id.resultbtn)
+    Button resbtn;
+
+
+    @BindView(R.id.cordinator_list_student)
+    TextView cordinatorListStudent;
+
+    @BindView(R.id.cordinator_list_teacher)
+    TextView cordinatorListTeacher;
+
+    @BindView(R.id.descShimmer)
+    ShimmerFrameLayout descShimmer;
+
+    @BindView(R.id.topicShimmer)
+    ShimmerFrameLayout topicShimmer;
+
+    @BindView(R.id.cordstuShimmer)
+    ShimmerFrameLayout cordstuShimmer;
+
+    @BindView(R.id.cordTeaShimmer)
+    ShimmerFrameLayout cordteaShimmer;
+
+    @BindView(R.id.EventNameShimmer)
+    ShimmerFrameLayout eventNameShimmer;
+
+
+    private EventDataCell listData;
 
     FirebaseFirestore ref;
 
     Context context;
+    FragmentActivity activity;
 
-    ArrayList<String> cordList=new ArrayList<>();
+    static ArrayList<String> cordListStudentName = new ArrayList<>();
+    static ArrayList<String> cordListStudentDept = new ArrayList<>();
+    static ArrayList<String> cordListTeacherName = new ArrayList<>();
+    static ArrayList<String> cordListTeacherDept = new ArrayList<>();
 
-    public Event_Page(Context context) {
-        this.context = context;
+    public Event_Page(Context context1, FragmentActivity activity) {
+        this.context = context1;
+        this.activity = activity;
     }
 
     private Button registerBt;
@@ -85,64 +115,15 @@ public class Event_Page extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ref=FirebaseFirestore.getInstance();
+        ref = FirebaseFirestore.getInstance();
     }
 
-    private void getCordinator() {
-
-        Log.e(TAG,"getCordinate "+listData.getEventId());
-        ref.collection("co-ordinator(student)")
-                .whereEqualTo("eventid",listData.getEventId())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        if(task.isSuccessful())
-                        {
-
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-
-                                if (documentSnapshot.exists()) {
-
-                                    cordList= (ArrayList<String>) documentSnapshot.getData().get("name");
-                                    for(String item : cordList){
-
-                                        Log.e(TAG, "onCordinate: "+cordList.size());
-
-                                    }
-
-                                }
-                            }
-                            putCordinData();
-
-                        }
-                    }
-                });
-
-    }
-
-    private void putCordinData() {
-
-        String str="";
-        for(int i=0;i<cordList.size();i++)
-        {
-            str=str+(i+1)+".\t"+ cordList.get(i) +"\n";
-            Log.e(TAG,"OnNames"+str);
-        }
-
-        cordinatorList.setText(str);
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event__page, container, false);
-        ButterKnife.bind(this, view);
-
-
+            ButterKnife.bind(this, view);
 
         collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         collapsingToolbar.setTitle("TechUtsav");
@@ -155,10 +136,39 @@ public class Event_Page extends Fragment {
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
-            }}
+            }
+        }
 
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                return true;
+            }
+            return false;
+        });
+
+        eventNameShimmer.startShimmerAnimation();
+        descShimmer.startShimmerAnimation();
+        topicShimmer.startShimmerAnimation();
+        cordstuShimmer.startShimmerAnimation();
+        cordteaShimmer.startShimmerAnimation();
+
+        ptbtn.setOnClickListener(view1 -> {
+            ParticipantsList pl = new ParticipantsList(listData.getEventId());
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
+                    , pl).addToBackStack(null).commitAllowingStateLoss();
+        });
+
+        resbtn.setOnClickListener(view12 -> {
+                    ResultBtmDlg resultBtmDlg = ResultBtmDlg.newInstance(listData.getEventId());
+                    resultBtmDlg.show(getActivity().getSupportFragmentManager(), "result_bottom_dialouge");
+                }
+        );
 
         return view;
 
@@ -178,9 +188,8 @@ public class Event_Page extends Fragment {
             // {}.getType());
             // Log.e(TAG, "onViewCreated: "+listData.getName() );
 
-            getCordinator();
-            putData();
-
+            getCordinatorStudent();
+            getCordinatorTeacher();
         }
 
     }
@@ -195,24 +204,112 @@ public class Event_Page extends Fragment {
                 .placeholder(R.drawable.placeholder)
                 .into(eventPic);
 
-        if(listData.getTopic()!=null)
-        {
+        if (listData.getTopic() != null) {
             topicsTitle.setVisibility(View.VISIBLE);
-            String s="";
-            ArrayList<String> list=listData.getTopic();
-            for(int i=0;i<list.size();i++)
-            {
-                s=s+(i+1)+".\t"+ list.get(i) +"\n";
+            String s = "";
+            ArrayList<String> list = listData.getTopic();
+            for (int i = 0; i < list.size(); i++) {
+                s = s + (i + 1) + ".\t" + list.get(i) + "\n";
             }
             topics.setText(s);
-        }
-        else {
+        } else {
             topicsTitle.setVisibility(View.GONE);
             topics.setVisibility(View.GONE);
         }
-
-
+        eventNameShimmer.setVisibility(View.GONE);
+        eventNameShimmer.stopShimmerAnimation();
+        descShimmer.setVisibility(View.GONE);
+        descShimmer.startShimmerAnimation();
+        topicShimmer.setVisibility(View.GONE);
+        topicShimmer.stopShimmerAnimation();
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    private void getCordinatorStudent() {
+
+        if (cordListStudentName != null && cordListStudentName.size() > 0) {
+            putCordinData(cordListStudentName, cordListStudentDept, "s");
+            cordstuShimmer.setVisibility(View.GONE);
+            cordstuShimmer.stopShimmerAnimation();
+            return;
+        } else {
+            Log.e(TAG, "getCordinate " + listData.getEventId());
+            ref.collection("co-ordinator(student)")
+                    .whereEqualTo("eventid", listData.getEventId())
+                    .get()
+                    .addOnCompleteListener(task -> {
+
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                                if (documentSnapshot.exists()) {
+
+                                    cordListStudentName = (ArrayList<String>) documentSnapshot.getData().get("name");
+                                    cordListStudentDept = (ArrayList<String>) documentSnapshot.getData().get("department");
+                                }
+                            }
+                            putCordinData(cordListStudentName, cordListStudentDept, "s");
+                            cordstuShimmer.setVisibility(View.GONE);
+                            cordstuShimmer.stopShimmerAnimation();
+                        }
+                    });
+
+        }
+
+    }
+
+    private void getCordinatorTeacher() {
+
+        if (cordListTeacherName != null && cordListTeacherName.size() > 0) {
+            putCordinData(cordListTeacherName, cordListTeacherDept, "t");
+            cordteaShimmer.stopShimmerAnimation();
+            cordteaShimmer.setVisibility(View.GONE);
+            return;
+        } else {
+            Log.e(TAG, "getCordinate " + listData.getEventId());
+            ref.collection("co-ordinator(admin)")
+                    .whereEqualTo("eventid", listData.getEventId())
+                    .get()
+                    .addOnCompleteListener(task -> {
+
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                                if (documentSnapshot.exists()) {
+
+                                    cordListTeacherName = (ArrayList<String>) documentSnapshot.getData().get("name");
+                                    cordListTeacherDept = (ArrayList<String>) documentSnapshot.getData().get("dept");
+                                }
+                            }
+                            putCordinData(cordListTeacherName, cordListTeacherDept, "t");
+                            cordteaShimmer.stopShimmerAnimation();
+                            cordteaShimmer.setVisibility(View.GONE);
+                        }
+                    });
+
+        }
+    }
+
+    private void putCordinData(ArrayList<String> cordListName, ArrayList<String> cordListDept, String tag) {
+
+        String str = " ";
+        for (int i = 0; i < cordListName.size(); i++) {
+            str = str + (i + 1) + ").\t" + cordListName.get(i) + "\t-\t" + cordListDept.get(i) + "\n";
+            Log.e(TAG, "OnNames" + str);
+        }
+
+        if (tag.equals("s"))
+            cordinatorListStudent.setText(str);
+        else if (tag.equals("t"))
+            cordinatorListTeacher.setText(str);
+
+        putData();
+    }
 }

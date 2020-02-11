@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:background="@drawable/back1">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Prelims Result:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/prelimsShimmerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                                <include layout="@layout/details_place_holder" />
+
+                                <include layout="@layout/details_place_holder" />
+
+                                <include layout="@layout/details_place_holder" />
+
+                        </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                android:id="@+id/prelims_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:textSize="17dp"
+                android:fontFamily="@font/poppins_light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Final Result:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/finalResultShimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                                <include layout="@layout/details_place_holder" />
+
+                                <include layout="@layout/details_place_holder" />
+
+                                <include layout="@layout/details_place_holder" />
+
+                        </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/final_results"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="17dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+</ScrollView>

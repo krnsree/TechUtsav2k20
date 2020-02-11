@@ -34,7 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:layout_marginTop="13dp"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -43,16 +44,36 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrolling_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         app:layout_anchor="@+id/scrolling_container"
         app:layout_anchorGravity="top|center"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/EventNameShimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
                 android:id="@+id/event_name"
@@ -64,7 +85,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@android:color/white"
-                android:textSize="32sp" />
+                android:textSize="32sp"/>
 
 
             <TextView
@@ -98,6 +119,27 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/descShimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <TextView
                 android:id="@+id/event_description"
                 android:layout_width="wrap_content"
@@ -107,6 +149,8 @@
                 android:lineSpacingMultiplier="1.2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@android:color/white" />
+
+
 
             <TextView
                 android:id="@+id/topic_title"
@@ -121,23 +165,25 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 
-
             <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_view_container"
+                android:id="@+id/topicShimmer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone"
-                shimmer:duration="800">
+                android:visibility="visible">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <include layout="@layout/details_place_holder" />
-            </LinearLayout>
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
@@ -151,7 +197,6 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/cordinator_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -164,7 +209,90 @@
                 android:textColor="@android:color/white"/>
 
             <TextView
-                android:id="@+id/cordinator_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Co-ordinators(Teachers):"
+                android:textSize="17dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white"/>
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/cordTeaShimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/cordinator_list_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Co-ordinators(Students):"
+                android:textSize="17dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/cordstuShimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                    <include layout="@layout/details_place_holder" />
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/cordinator_list_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -175,22 +303,24 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/rounded_button"
-                    android:text="Participant\n List" />
+                    android:text="Participant\n List"
+                    android:id="@+id/participantbtn"/>
 
                 <Button
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/rounded_button"
-                    android:text="Event\nResults" />
-
+                    android:text="Event\nResults"
+                    android:id="@+id/resultbtn"/>
 
             </LinearLayout>
 
