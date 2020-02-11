@@ -10,18 +10,26 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.List;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 
 public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecyclerViewAdapter.ViewHolder> {
 
      Context context;
+     List<GalleryList> galleryLists;
+     FragmentActivity activity;
 
 
      public GalleryRecyclerViewAdapter(List<GalleryList> galleryLists, Context context, FragmentActivity activity){
 
+         this.galleryLists = galleryLists;
          this.context = context;
+         this.activity = activity;
 
      }
 
@@ -38,9 +46,17 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+//        Glide.with(context)
+//                .load(galleryLists.get(position).getgImage())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .transition(withCrossFade())
+//                .placeholder(R.drawable.placeholder)
+//                .into(holder.galleryImage);
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
