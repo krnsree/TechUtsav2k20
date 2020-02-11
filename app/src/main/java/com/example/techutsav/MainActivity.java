@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
+
         if(savedInstanceState == null){
 
              getSupportFragmentManager()
@@ -61,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
                  return false;
             }
         });
-
-
 
     }
 

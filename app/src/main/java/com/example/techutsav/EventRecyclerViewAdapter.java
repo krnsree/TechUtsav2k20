@@ -60,7 +60,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
                 String list = gson.toJson(eventList.get(position));
                 Bundle bundle = new Bundle();
                 bundle.putString("EVENT_DATA", list);
-                Event_Page event_page = new Event_Page(context);
+                Event_Page event_page = new Event_Page(context,activity);
                 event_page.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
                 , event_page ).addToBackStack(null).commitAllowingStateLoss();

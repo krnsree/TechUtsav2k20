@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background_gradient"
+    android:orientation="vertical"
     tools:context=".EventFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,18 +19,37 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#085078"
-            app:titleTextColor="#ffffff"
             app:title="Event"
-            app:titleTextAppearance="?attr/textAppearanceHeadline6"/>
+            app:titleTextColor="#ffffff" />
+        app:titleTextAppearance="?attr/textAppearanceHeadline6" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:id="@+id/rvprogressbar"/>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/parentShimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        // 2
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/event_list"
