@@ -1,13 +1,16 @@
 package com.example.techutsav;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -36,29 +39,37 @@ public class ResultBtmDlg extends BottomSheetDialogFragment {
     @BindView(R.id.prelimsShimmerLayout)
     ShimmerFrameLayout prelimsshimmer;
 
+    @BindView(R.id.prelims_title)
+    TextView prelimsTitle;
+
+    @BindView(R.id.addrslyBttn)
+    Button addresultButton;
+
+    private static FragmentManager fractivity;
+
     FirebaseFirestore ref;
 
-    ArrayList<String> finals_regno=new ArrayList<>();
-    ArrayList<String> finals_dept=new ArrayList<>();
-    ArrayList<String> finals_teamname=new ArrayList<>();
+    ArrayList<String> finals_regno = new ArrayList<>();
+    ArrayList<String> finals_dept = new ArrayList<>();
+    ArrayList<String> finals_teamname = new ArrayList<>();
     boolean rf;
 
-    ArrayList<String> prelims_teamname=new ArrayList<>();
-    ArrayList<String> prelims_dept=new ArrayList<>();
-    ArrayList<String> prelims_regno=new ArrayList<>();
+    ArrayList<String> prelims_teamname = new ArrayList<>();
+    ArrayList<String> prelims_dept = new ArrayList<>();
+    ArrayList<String> prelims_regno = new ArrayList<>();
     boolean pf;
 
 
-    public static ResultBtmDlg newInstance(String eventId) {
+    public static ResultBtmDlg newInstance(String eventId, FragmentManager factivity) {
 
-        eventid=eventId;
+        fractivity=factivity;
+        eventid = eventId;
         return new ResultBtmDlg();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -68,73 +79,96 @@ public class ResultBtmDlg extends BottomSheetDialogFragment {
 
         View view = inflater.inflate(R.layout.result_dialouge, container, false);
 
-        ButterKnife.bind(this,view);
-        ref=FirebaseFirestore.getInstance();
+        ButterKnife.bind(this, view);
+        ref = FirebaseFirestore.getInstance();
 
-        prelimsshimmer.startShimmerAnimation();
+        if (!(eventid.equals("eve004") || eventid.equals("eve006"))) {
+            prelimsshimmer.setVisibility(View.GONE);
+            prelimsResults.setVisibility(View.GONE);
+            prelimsTitle.setVisibility(View.GONE);
+        }
+
+        else {
+            prelimsshimmer.startShimmerAnimation();
+            getPrelimsData();
+        }
         finalshimmer.startShimmerAnimation();
 
         getFinalsData();
-        getPrelimsData();
         setResults(finals_regno, finals_dept, finals_teamname, "r");
+
+        addresultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAR();
+            }
+        });
+
         return view;
+
+    }
+
+    private void showAR() {
+
+        passwordFragment pf=passwordFragment.newInstance("result",eventid);
+        pf.show(getActivity().getSupportFragmentManager(),"coordinators");
+
+        dismiss();
 
     }
 
     private void setResults(ArrayList<String> dept, ArrayList<String> regno, ArrayList<String> teamname, String r) {
 
-        String results="";
+        String results = "";
 
-        Log.e(TAG, "setResults: "+rf );
+        Log.e(TAG, "setResults: " + rf);
 
-            for (int i = 0; i < teamname.size(); i++) {
-                results = results + (i + 1) + "). " + teamname.get(i) + " -" + dept.get(i) + " -" + regno.get(i)+ "\n";
-                Log.e(TAG, "setResults: " + results);
-            }
+        for (int i = 0; i < teamname.size(); i++) {
+            results = results + (i + 1) + "). " + teamname.get(i) + " -" + dept.get(i) + " -" + regno.get(i) + "\n";
+            Log.e(TAG, "setResults: " + results);
+        }
 
-        if(r.equals("p"))
+        if (r.equals("p"))
             prelimsResults.setText(results);
-        else if(r.equals("f"))
+        else if (r.equals("f"))
             finalResults.setText(results);
+
+        addresultButton.setVisibility(View.VISIBLE);
     }
 
     private void setResults(String p) {
 
-        String results="Results are not decided. Sorry for the inconvenience";
+        String results = "Results are not decided. Sorry for the inconvenience";
 
-        if(p.equals("p"))
+        if (p.equals("p"))
             prelimsResults.setText(results);
-        else if(p.equals("f"))
+        else if (p.equals("f"))
             finalResults.setText(results);
+
+        addresultButton.setVisibility(View.VISIBLE);
 
     }
 
     private void getPrelimsData() {
 
         ref.collection("prelims_result")
-                .whereEqualTo("eventid",eventid)
+                .whereEqualTo("eventid", eventid)
                 .get()
                 .addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful())
-                    {
-                        if(!task.getResult().isEmpty())
-                        {
-                            for(QueryDocumentSnapshot document : task.getResult())
-                            {
-                                if(document.exists())
-                                {
-                                    prelims_dept= (ArrayList<String>) document.getData().get("dept");
-                                    prelims_teamname= (ArrayList<String>) document.getData().get("team_name");
-                                    prelims_regno= (ArrayList<String>) document.getData().get("regno");
-                                    rf=true;
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.exists()) {
+                                    prelims_dept = (ArrayList<String>) document.getData().get("dept");
+                                    prelims_teamname = (ArrayList<String>) document.getData().get("team_name");
+                                    prelims_regno = (ArrayList<String>) document.getData().get("regno");
+                                    rf = true;
                                 }
                             }
-                            setResults(prelims_dept,prelims_regno,prelims_teamname,"p");
-                        }
-                        else
-                        {
-                            rf=false;
+                            setResults(prelims_dept, prelims_regno, prelims_teamname, "p");
+                        } else {
+                            rf = false;
                             setResults("p");
                         }
                         prelimsshimmer.setVisibility(View.GONE);
@@ -148,31 +182,25 @@ public class ResultBtmDlg extends BottomSheetDialogFragment {
     private void getFinalsData() {
 
         ref.collection("Result")
-                .whereEqualTo("eventid",eventid)
+                .whereEqualTo("eventid", eventid)
                 .get()
                 .addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful())
-                    {
-                        if(!task.getResult().isEmpty())
-                        {
-                            for(QueryDocumentSnapshot document : task.getResult())
-                            {
-                                if(document.exists())
-                                {
-                                    finals_dept= (ArrayList<String>) document.getData().get("dept");
-                                    finals_teamname= (ArrayList<String>) document.getData().get("team_name");
-                                    finals_regno= (ArrayList<String>) document.getData().get("regno");
-                                    Log.e(TAG, "getFinalsData: "+ document.getData().get("regno"));
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.exists()) {
+                                    finals_dept = (ArrayList<String>) document.getData().get("dept");
+                                    finals_teamname = (ArrayList<String>) document.getData().get("team_name");
+                                    finals_regno = (ArrayList<String>) document.getData().get("regno");
+                                    Log.e(TAG, "getFinalsData: " + document.getData().get("regno"));
 
                                 }
                             }
-                            setResults(finals_dept,finals_regno,finals_teamname,"f");
-                        }
-                        else
-                        {
-                            pf=false;
-                            Log.e(TAG, "getFinalsData: yher " );
+                            setResults(finals_dept, finals_regno, finals_teamname, "f");
+                        } else {
+                            pf = false;
+                            Log.e(TAG, "getFinalsData: yher ");
                             setResults("f");
 
                         }

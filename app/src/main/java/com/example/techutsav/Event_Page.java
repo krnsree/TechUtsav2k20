@@ -159,13 +159,16 @@ public class Event_Page extends Fragment {
         cordteaShimmer.startShimmerAnimation();
 
         ptbtn.setOnClickListener(view1 -> {
-            ParticipantsList pl = new ParticipantsList(listData.getEventId());
+            /*ParticipantsList pl = new ParticipantsList(listData.getEventId());
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
-                    , pl).addToBackStack(null).commitAllowingStateLoss();
+                    , pl).addToBackStack(null).commitAllowingStateLoss();*/
+
+                passwordFragment pf=passwordFragment.newInstance("coordinators",listData.getEventId());
+                pf.show(getActivity().getSupportFragmentManager(),"coordinators");
         });
 
         resbtn.setOnClickListener(view12 -> {
-                    ResultBtmDlg resultBtmDlg = ResultBtmDlg.newInstance(listData.getEventId());
+                    ResultBtmDlg resultBtmDlg = ResultBtmDlg.newInstance(listData.getEventId(),getActivity().getSupportFragmentManager());
                     resultBtmDlg.show(getActivity().getSupportFragmentManager(), "result_bottom_dialouge");
                 }
         );

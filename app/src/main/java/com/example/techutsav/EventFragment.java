@@ -2,6 +2,7 @@ package com.example.techutsav;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,18 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -68,6 +74,8 @@ public class EventFragment extends Fragment {
 
     ShimmerFrameLayout shimmerFrameLayout;
 
+    CollapsingToolbarLayout collapsingToolbar;
+    Toolbar toolbar;
 
 
     @Override
@@ -89,8 +97,36 @@ public class EventFragment extends Fragment {
         shimmerFrameLayout=view.findViewById(R.id.parentShimmerLayout);
 
         //Action Bar
-        eventActionBar(view);
+//        eventActionBar(view);
 
+        collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_ev);
+        toolbar=view.findViewById(R.id.event_action_bar);
+
+        collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+        collapsingToolbar.setTitle("TechUtsav");
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedToolbar);
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedToolbar);
+        collapsingToolbar.setTitleEnabled(true);
+        if (toolbar != null) {
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+            }
+        }
+
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                getActivity().finishAffinity();
+                return true;
+            }
+            return false;
+        });
 
 
         getData();
@@ -108,7 +144,7 @@ public class EventFragment extends Fragment {
 
     }
 
-    private void eventActionBar(View view) {
+   /* private void eventActionBar(View view) {
 
         Toolbar toolbar = view.findViewById(R.id.event_action_bar);
         setHasOptionsMenu(true);
@@ -117,7 +153,7 @@ public class EventFragment extends Fragment {
             activity.setSupportActionBar(toolbar);
         }
 
-    }
+    }*/
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

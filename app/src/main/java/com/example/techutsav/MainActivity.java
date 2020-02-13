@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Application;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
                      .add(R.id.mainFrame, new EventFragment())
                      .commit();
         }
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bottom_nav);
 
@@ -66,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
     }
 
 
-
     @Override
     public void navigateTo(Fragment fragment, boolean backStack) {
 
@@ -83,5 +86,12 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
 
 
                 transaction.commit();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }
