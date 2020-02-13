@@ -4,19 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AboutFragment">
+    tools:context=".AboutFragment"
+    android:orientation="horizontal"
+    android:background="#263238">
 
-    <com.google.android.material.appbar.AppBarLayout
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/event_action_bar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="#085078"-->
+<!--            app:titleTextColor="#ffffff"-->
+<!--            app:title="@string/about_title"-->
+<!--            app:titleTextAppearance="?attr/textAppearanceHeadline6"/>-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <ImageView
+        android:id="@+id/about_us_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
+        android:scaleType="fitXY"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:src="@drawable/about" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/event_action_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#085078"
-            app:titleTextColor="#ffffff"
-            app:title="@string/about_title"
-            app:titleTextAppearance="?attr/textAppearanceHeadline6"/>
-    </com.google.android.material.appbar.AppBarLayout>
+
+
+
 </LinearLayout>

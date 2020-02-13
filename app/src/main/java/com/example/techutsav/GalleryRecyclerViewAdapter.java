@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -21,16 +22,14 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecyclerViewAdapter.ViewHolder> {
 
      Context context;
-     List<GalleryList> galleryLists;
-     FragmentActivity activity;
+     ArrayList<GalleryList> galleryLists;
 
 
-     public GalleryRecyclerViewAdapter(List<GalleryList> galleryLists, Context context, FragmentActivity activity){
+
+     public GalleryRecyclerViewAdapter(Context context, ArrayList<GalleryList> galleryLists){
 
          this.galleryLists = galleryLists;
          this.context = context;
-         this.activity = activity;
-
      }
 
 
@@ -46,21 +45,18 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+       holder.galleryImage.setImageResource(galleryLists.get(position).getgImagge());
+
 //        Glide.with(context)
-//                .load(galleryLists.get(position).getgImage())
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .transition(withCrossFade())
-//                .placeholder(R.drawable.placeholder)
+//                .load(galleryLists.get(position).getgImagge())
 //                .into(holder.galleryImage);
-
-
-    }
+     }
 
 
 
     @Override
     public int getItemCount() {
-        return 51;
+        return galleryLists.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

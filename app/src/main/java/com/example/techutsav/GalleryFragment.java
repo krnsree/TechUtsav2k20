@@ -3,28 +3,21 @@ package com.example.techutsav;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
+
 
 
 /**
@@ -34,8 +27,31 @@ public class GalleryFragment extends Fragment {
 
     private RecyclerView galleryRecycler;
     private GalleryRecyclerViewAdapter adapter;
-    ArrayList<GalleryList> galleryList = new ArrayList<>();
-    FirebaseFirestore gRef;
+
+    private final int img[] = {
+
+            R.drawable.img,
+            R.drawable.img1,
+            R.drawable.img11,
+            R.drawable.img18,
+            R.drawable.img2,
+            R.drawable.img20,
+            R.drawable.img21,
+            R.drawable.img28,
+            R.drawable.img29,
+            R.drawable.img3,
+            R.drawable.img30,
+            R.drawable.img32,
+            R.drawable.img33,
+            R.drawable.img34,
+            R.drawable.img37,
+            R.drawable.img4,
+            R.drawable.img40,
+            R.drawable.img41,
+            R.drawable.img45,
+            R.drawable.img5,
+            R.drawable.img67,
+    };
 
 
 
@@ -59,50 +75,35 @@ public class GalleryFragment extends Fragment {
         galleryRecycler = view.findViewById(R.id.gallery_recycler_view);
         galleryRecycler.setHasFixedSize(true);
         galleryRecycler.setLayoutManager(new GridLayoutManager(getContext(),2,GridLayoutManager.VERTICAL,false));
-        adapter = new GalleryRecyclerViewAdapter(galleryList,getContext(),getActivity());
-        galleryRecycler.setAdapter(adapter);
 
-        //getGalleryData();
+
+        getGalleryData();
+
+
+        ArrayList<GalleryList> gList = getGalleryData();
+        adapter = new GalleryRecyclerViewAdapter(getContext(), gList);
+        galleryRecycler.setAdapter(adapter);
 
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    private ArrayList<GalleryList> getGalleryData() {
+
+        ArrayList<GalleryList> image = new ArrayList<>();
+
+        for(int i = 0; i < img.length; i++){
+
+            GalleryList ls = new GalleryList();
+            ls.setgImagge(img[i]);
+            image.add(ls);
+        }
 
 
-
+        return image;
     }
 
-    private void getGalleryData() {
 
 
-
-        gRef = FirebaseFirestore.getInstance();
-
-        gRef.collection("Gallery")
-                .get()
-                .addOnCompleteListener(task -> {
-                     if(task.isSuccessful()){
-
-                         Log.e(TAG, "onGallery: here");
-
-                         for(QueryDocumentSnapshot documentSnapshots : task.getResult()){
-
-
-                             if(documentSnapshots.exists()){
-
-                                 GalleryList gList = new GalleryList();
-                                 gList.setgImage(String.valueOf(documentSnapshots.getData().get("url")));
-                                 galleryList.add(gList);
-                             }
-                         }
-                         adapter.notifyDataSetChanged();
-                     }else{
-                         Toast.makeText(getActivity(), "asdasdsad", Toast.LENGTH_SHORT).show();
-                     }
-                });
-           }
 
        }

@@ -1,17 +1,28 @@
 package com.example.techutsav;
 
+
+
 public class GalleryList {
 
-    private String gImage;
+    int gImagge;
 
 
 
-
-    public String getgImage() {
-        return gImage;
+    public int getgImagge() {
+        return gImagge;
     }
 
-    public void setgImage(String gImage) {
-        this.gImage = gImage;
+
+    public void setgImagge(int gImagge) {
+        this.gImagge = gImagge;
     }
+
+
+
+
+
+
+
+
+
 }
