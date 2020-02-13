@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.fragments;
 
 
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.techutsav.models.AlumniList;
+import com.example.techutsav.adapters.AlumniRecyclerViewAdapter;
+import com.example.techutsav.R;
 
 import java.util.ArrayList;
 

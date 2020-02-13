@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.techutsav.R;
 
 public class AlumniRecyclerViewAdapter extends RecyclerView.Adapter<AlumniRecyclerViewAdapter.ViewHolder> {
     @NonNull

@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.techutsav.models.EventDataCell;
+import com.example.techutsav.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -123,7 +125,7 @@ public class Event_Page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event__page, container, false);
-            ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
 
         collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         collapsingToolbar.setTitle("TechUtsav");
@@ -135,7 +137,6 @@ public class Event_Page extends Fragment {
 
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
             }
         }
 
@@ -163,12 +164,12 @@ public class Event_Page extends Fragment {
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
                     , pl).addToBackStack(null).commitAllowingStateLoss();*/
 
-                passwordFragment pf=passwordFragment.newInstance("coordinators",listData.getEventId());
-                pf.show(getActivity().getSupportFragmentManager(),"coordinators");
+            passwordFragment pf = passwordFragment.newInstance("coordinators", listData.getEventId());
+            pf.show(getActivity().getSupportFragmentManager(), "coordinators");
         });
 
         resbtn.setOnClickListener(view12 -> {
-                    ResultBtmDlg resultBtmDlg = ResultBtmDlg.newInstance(listData.getEventId(),getActivity().getSupportFragmentManager());
+                    ResultBtmDlg resultBtmDlg = ResultBtmDlg.newInstance(listData.getEventId(), getActivity().getSupportFragmentManager());
                     resultBtmDlg.show(getActivity().getSupportFragmentManager(), "result_bottom_dialouge");
                 }
         );
@@ -182,6 +183,7 @@ public class Event_Page extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.GONE);
+
 
         if (getArguments() != null) {
             String list = getArguments().getString("EVENT_DATA");
@@ -235,69 +237,71 @@ public class Event_Page extends Fragment {
 
     private void getCordinatorStudent() {
 
-        if (cordListStudentName != null && cordListStudentName.size() > 0) {
+       /* if (cordListStudentName != null && cordListStudentName.size() > 0) {
             putCordinData(cordListStudentName, cordListStudentDept, "s");
             cordstuShimmer.setVisibility(View.GONE);
             cordstuShimmer.stopShimmerAnimation();
             return;
-        } else {
-            Log.e(TAG, "getCordinate " + listData.getEventId());
-            ref.collection("co-ordinator(student)")
-                    .whereEqualTo("eventid", listData.getEventId())
-                    .get()
-                    .addOnCompleteListener(task -> {
+        } else {*/
+        Log.e(TAG, "getCordinate " + listData.getEventId());
+        ref.collection("co-ordinator(student)")
+                .whereEqualTo("eventid", listData.getEventId())
+                .get()
+                .addOnCompleteListener(task -> {
 
-                        if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                if (documentSnapshot.exists()) {
+                            if (documentSnapshot.exists()) {
 
-                                    cordListStudentName = (ArrayList<String>) documentSnapshot.getData().get("name");
-                                    cordListStudentDept = (ArrayList<String>) documentSnapshot.getData().get("department");
-                                }
+                                cordListStudentName = (ArrayList<String>) documentSnapshot.getData().get("name");
+                                cordListStudentDept = (ArrayList<String>) documentSnapshot.getData().get("department");
                             }
-                            putCordinData(cordListStudentName, cordListStudentDept, "s");
-                            cordstuShimmer.setVisibility(View.GONE);
-                            cordstuShimmer.stopShimmerAnimation();
-                        }
-                    });
 
-        }
+                        }
+                        putCordinData(cordListStudentName, cordListStudentDept, "s");
+                        cordstuShimmer.setVisibility(View.GONE);
+                        cordstuShimmer.stopShimmerAnimation();
+                    }
+                });
+
+        // }
 
     }
 
     private void getCordinatorTeacher() {
 
-        if (cordListTeacherName != null && cordListTeacherName.size() > 0) {
+       /* if (cordListTeacherName != null && cordListTeacherName.size() > 0) {
             putCordinData(cordListTeacherName, cordListTeacherDept, "t");
             cordteaShimmer.stopShimmerAnimation();
             cordteaShimmer.setVisibility(View.GONE);
             return;
-        } else {
-            Log.e(TAG, "getCordinate " + listData.getEventId());
-            ref.collection("co-ordinator(admin)")
-                    .whereEqualTo("eventid", listData.getEventId())
-                    .get()
-                    .addOnCompleteListener(task -> {
+        } else {*/
+        Log.e(TAG, "getCordinate " + listData.getEventId());
+        ref.collection("co-ordinator(admin)")
+                .whereEqualTo("eventid", listData.getEventId())
+                .get()
+                .addOnCompleteListener(task -> {
 
-                        if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                if (documentSnapshot.exists()) {
+                            if (documentSnapshot.exists()) {
 
-                                    cordListTeacherName = (ArrayList<String>) documentSnapshot.getData().get("name");
-                                    cordListTeacherDept = (ArrayList<String>) documentSnapshot.getData().get("dept");
-                                }
+                                cordListTeacherName = (ArrayList<String>) documentSnapshot.getData().get("name");
+                                cordListTeacherDept = (ArrayList<String>) documentSnapshot.getData().get("dept");
+
                             }
-                            putCordinData(cordListTeacherName, cordListTeacherDept, "t");
-                            cordteaShimmer.stopShimmerAnimation();
-                            cordteaShimmer.setVisibility(View.GONE);
                         }
-                    });
+                        putCordinData(cordListTeacherName, cordListTeacherDept, "t");
+                        cordteaShimmer.stopShimmerAnimation();
+                        cordteaShimmer.setVisibility(View.GONE);
+                    }
+                });
 
-        }
+        // }
     }
 
     private void putCordinData(ArrayList<String> cordListName, ArrayList<String> cordListDept, String tag) {
@@ -310,8 +314,10 @@ public class Event_Page extends Fragment {
 
         if (tag.equals("s"))
             cordinatorListStudent.setText(str);
+
         else if (tag.equals("t"))
             cordinatorListTeacher.setText(str);
+
 
         putData();
     }

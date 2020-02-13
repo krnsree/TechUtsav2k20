@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techutsav.R;
+import com.example.techutsav.adapters.PTAdapter;
+import com.example.techutsav.models.participantDetailCell;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,7 +37,7 @@ public class ParticipantsList extends Fragment {
     @BindView(R.id.textNone)
     TextView none;
 
-    private PTAdapter ptadapter;
+    PTAdapter ptadapter;
 
 
     private boolean isDataAvailable;

@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.techutsav.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;

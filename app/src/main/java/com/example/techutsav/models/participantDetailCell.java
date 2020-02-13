@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.models;
 
 import java.util.ArrayList;
 

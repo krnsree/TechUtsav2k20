@@ -1,6 +1,5 @@
-package com.example.techutsav;
+package com.example.techutsav.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.techutsav.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.FirebaseFirestore;

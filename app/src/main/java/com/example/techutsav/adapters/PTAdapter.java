@@ -1,4 +1,4 @@
-package com.example.techutsav;
+package com.example.techutsav.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techutsav.R;
+import com.example.techutsav.models.participantDetailCell;
+
 import java.util.ArrayList;
 
-class PTAdapter extends RecyclerView.Adapter<PTAdapter.ViewHolder> {
+public class PTAdapter extends RecyclerView.Adapter<PTAdapter.ViewHolder> {
 
     ArrayList<participantDetailCell> listData;
     Context context;
