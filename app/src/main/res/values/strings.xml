@@ -31,6 +31,7 @@
 
     //About
     <string name="about_title">About</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 
 </resources>

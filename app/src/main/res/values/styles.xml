@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -6,9 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    
+
     <style name="DotWhiteTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow">
-     <item name="android:tint">#ffffff</item>
+        <item name="android:tint">#ffffff</item>
     </style>
 
     <style name="CollapsedToolbar" parent="@android:style/TextAppearance.Medium">
@@ -20,8 +21,20 @@
         <item name="android:textColor">@android:color/transparent</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.MinWidth">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

@@ -6,6 +6,7 @@
     android:layout_height="200dp"
     android:orientation="vertical"
     app:cardCornerRadius="0dp"
+    android:background="@drawable/back1"
     app:cardPreventCornerOverlap="true">
 
     <ImageView

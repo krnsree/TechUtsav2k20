@@ -9,14 +9,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techutsav.adapters.GalleryRecyclerViewAdapter;
 import com.example.techutsav.R;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 
@@ -30,6 +36,9 @@ public class GalleryFragment extends Fragment {
     ProgressBar imageLoader;
     private RecyclerView galleryRecycler;
     private GalleryRecyclerViewAdapter adapter;
+
+    CollapsingToolbarLayout collapsingToolbar;
+    Toolbar toolbar;
 
     private final int img[] = {
 
@@ -72,6 +81,23 @@ public class GalleryFragment extends Fragment {
         galleryRecycler.setHasFixedSize(true);
         galleryRecycler.setItemViewCacheSize(20);
         galleryRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+
+
+        collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_gl);
+        toolbar=view.findViewById(R.id.event_action_bar_gl);
+
+        collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+        collapsingToolbar.setTitle("Gallery");
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedToolbar);
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedToolbar);
+        collapsingToolbar.setTitleEnabled(true);
+        if (toolbar != null) {
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+            }
+        }
 
 
         getGalleryData();

@@ -6,6 +6,7 @@ import java.util.List;
 public class EventDataCell {
 
 
+    private String title;
     private String name;
     private String date;
     private String description;
@@ -72,4 +73,11 @@ public class EventDataCell {
     }
 
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

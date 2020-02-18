@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
-    android:background="@drawable/back1">
+    android:background="#000000">
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
@@ -50,7 +50,7 @@
         android:id="@+id/parentShimmerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:visibility="visible">
         // 2
 
@@ -63,12 +63,9 @@
             <include layout="@layout/recycler_view_place_holder" />
 
             <include layout="@layout/recycler_view_place_holder" />
-
             <include layout="@layout/recycler_view_place_holder" />
 
-            <include layout="@layout/recycler_view_place_holder" />
 
-            <include layout="@layout/recycler_view_place_holder" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 
