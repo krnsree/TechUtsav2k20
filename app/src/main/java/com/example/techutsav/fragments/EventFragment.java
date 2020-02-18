@@ -91,7 +91,7 @@ public class EventFragment extends Fragment {
         shimmerFrameLayout=view.findViewById(R.id.parentShimmerLayout);
 
         //Action Bar
-//        eventActionBar(view);
+       eventActionBar(view);
 
         collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_ev);
         toolbar=view.findViewById(R.id.event_action_bar);
@@ -138,7 +138,7 @@ public class EventFragment extends Fragment {
 
     }
 
-   /* private void eventActionBar(View view) {
+    private void eventActionBar(View view) {
 
         Toolbar toolbar = view.findViewById(R.id.event_action_bar);
         setHasOptionsMenu(true);
@@ -147,7 +147,7 @@ public class EventFragment extends Fragment {
             activity.setSupportActionBar(toolbar);
         }
 
-    }*/
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -169,9 +169,6 @@ public class EventFragment extends Fragment {
 
         switch (item.getItemId()) {
 
-            case R.id.event_action_schedule:
-                ((NavigationHost) getActivity()).navigateTo(new ScheduleFragment(), true);
-                return true;
             case R.id.event_action_info:
                 ((NavigationHost) getActivity()).navigateTo(new InfoFragment(), true);
                 return true;
