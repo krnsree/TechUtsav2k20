@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,11 +9,24 @@
     tools:context=".fragments.AlumniFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+
+
+            <androidx.appcompat.widget.Toolbar
             android:id="@+id/event_action_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -20,12 +34,44 @@
             app:titleTextColor="#ffffff"
             app:title="@string/alumni_title"
             app:titleTextAppearance="?attr/textAppearanceHeadline6"/>
-    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+         </com.google.android.material.appbar.AppBarLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/alumniShimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+
+            <include layout="@layout/recycler_view_place_holder" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 
      <androidx.core.widget.NestedScrollView
          android:layout_width="match_parent"
          android:layout_height="match_parent"
+         android:layout_marginTop="150dp"
          android:layout_marginBottom="56dp">
 
          <androidx.recyclerview.widget.RecyclerView
@@ -41,4 +87,4 @@
 
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

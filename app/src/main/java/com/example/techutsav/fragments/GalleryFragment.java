@@ -67,7 +67,7 @@ public class GalleryFragment extends Fragment {
 
     public GalleryFragment() {
         // Required empty public constructor
-    }
+        }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
