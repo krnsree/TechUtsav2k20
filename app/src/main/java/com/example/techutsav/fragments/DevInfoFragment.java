@@ -2,19 +2,19 @@ package com.example.techutsav.fragments;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techutsav.R;
 import com.example.techutsav.adapters.DevInfoRecyclerViewAdapter;
 import com.example.techutsav.models.DevDataCell;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -28,17 +28,17 @@ public class DevInfoFragment extends Fragment {
     DevInfoRecyclerViewAdapter adapter;
     ArrayList<DevDataCell> dList = new ArrayList<>();
 
+    FirebaseFirestore ref;
 
-    final int dev_img[] = {};
-
-    final String dev_name[] = {"HariKrishnan","Kiran","Nash Jacob John","Akanksha Shahi","Sivani Rupvat","Rahul R Y","Rahul Raj" };
-    final String dev_designation[] = {"Developer","Developer","Developer","DataBase","DataBase","Designer","Designer"};
-    final String dev_dept[] = {"BCA","BCA","BSc Computer Science","BCA","BCA","BCA","BCA" };
-    final String dev_year[] = {"3rd year","3rd year","3rd year","3rd year","3rd year","2nd year","3rd year" };
-
+    final int dev_images[]={R.drawable.hari,R.drawable.kiran,R.drawable.nash,R.drawable.akanksha,R.drawable.sivani,R.drawable.rahulj,R.drawable.rahul};
+    final String dev_name[] = {"HariKrishnan", "Kiran", "Nash Jacob John", "Akanksha Shahi", "Sivani Rupvat", "Rahul R Y", "Rahul Raj"};
+    final String dev_designation[] = {"Developer", "Developer", "Developer", "DataBase", "DataBase", "Designer", "Designer"};
+    final String dev_dept[] = {"BCA", "BCA", "BSc Computer Science", "BCA", "BCA", "BCA", "BCA"};
+    final String dev_year[] = {"3rd year", "3rd year", "3rd year", "3rd year", "3rd year", "2nd year", "3rd year"};
 
 
-    public DevInfoFragment() { }
+    public DevInfoFragment() {
+    }
 
 
     @Override
@@ -48,17 +48,16 @@ public class DevInfoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
+        ref = FirebaseFirestore.getInstance();
+
         devRecycler = view.findViewById(R.id.dev_recycler);
         devRecycler.setHasFixedSize(true);
         devRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-         dList.addAll(getDevData());
+        dList.addAll(getDevData());
 
         adapter = new DevInfoRecyclerViewAdapter(getContext(), dList, getActivity());
         devRecycler.setAdapter(adapter);
-
-
-
 
 
         return view;
@@ -66,25 +65,22 @@ public class DevInfoFragment extends Fragment {
 
     }
 
-    ArrayList<DevDataCell> getDevData(){
+    ArrayList<DevDataCell> getDevData() {
 
-         ArrayList<DevDataCell> devList = new ArrayList<>();
-        for(int i = 0; i < dev_name.length; i++){
+        ArrayList<DevDataCell> devList = new ArrayList<>();
+        for (int i = 0; i < dev_name.length; i++) {
 
-              DevDataCell cell = new DevDataCell();
-              //cell.setImg(dev_img[i]);
-              cell.setName(dev_name[i]);
-              cell.setDesination(dev_designation[i]);
-              cell.setDept(dev_dept[i]);
-              cell.setYear(dev_year[i]);
-
-              devList.add(cell);
-              Log.i("DevInfo","Setting");
-
-
-          }
-
-          return devList;
+            DevDataCell cell = new DevDataCell();
+            //cell.setImg(dev_img[i]);
+            cell.setName(dev_name[i]);
+            cell.setDesination(dev_designation[i]);
+            cell.setDept(dev_dept[i]);
+            cell.setYear(dev_year[i]);
+            cell.setImg(dev_images[i]);
+            devList.add(cell);
+            Log.i("DevInfo", "Setting");
+        }
+        return devList;
     }
 
 

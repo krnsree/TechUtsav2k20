@@ -1,6 +1,7 @@
 package com.example.techutsav.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.techutsav.R;
 import com.example.techutsav.models.DevDataCell;
 
@@ -21,9 +23,6 @@ public class DevInfoRecyclerViewAdapter extends RecyclerView.Adapter<DevInfoRecy
     Context context;
     ArrayList<DevDataCell> devList;
     FragmentActivity activity;
-
-
-
 
 
     public DevInfoRecyclerViewAdapter(Context context, ArrayList<DevDataCell> devList, FragmentActivity activity){
@@ -52,6 +51,7 @@ public class DevInfoRecyclerViewAdapter extends RecyclerView.Adapter<DevInfoRecy
         holder.designation.setText(devList.get(position).getDesination());
         holder.dept.setText(devList.get(position).getDept());
         holder.year.setText(devList.get(position).getYear());
+        Glide.with(context).load(devList.get(position).getImg()).into(holder.image);
     }
 
     @Override

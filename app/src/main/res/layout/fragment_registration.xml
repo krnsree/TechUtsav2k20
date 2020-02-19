@@ -13,14 +13,16 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:title="@string/reg_toolbar_title"
-        app:titleTextColor="#ffffff"/>
+        app:titleTextColor="#ffffff" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/reg_msg"
+        android:textColor="#ffffff"
         android:gravity="center"
         android:textSize="36sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_light"/>
 
 </LinearLayout>
