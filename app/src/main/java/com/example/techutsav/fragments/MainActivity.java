@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.mainFrame, new EventFragment())
+                    .addToBackStack(null)
                     .commit();
         }
 

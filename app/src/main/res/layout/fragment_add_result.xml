@@ -88,7 +88,7 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Add Member" />
@@ -100,7 +100,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Remove Member" />
@@ -238,7 +238,7 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"
                                 android:text="Add Member" />
 
@@ -249,7 +249,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="FINISH" />
@@ -318,7 +318,7 @@
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Add Member"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"/>
 
                             <Button
@@ -330,7 +330,7 @@
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Remove Member"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"/>
 
 
@@ -487,7 +487,7 @@
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Add Member"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"/>
 
                             <Button
@@ -499,7 +499,7 @@
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="FINISH"
-                                android:backgroundTint="@color/White"
+                                android:backgroundTint="@color/white"
                                 android:textColor="@color/colorPrimary"/>
 
 

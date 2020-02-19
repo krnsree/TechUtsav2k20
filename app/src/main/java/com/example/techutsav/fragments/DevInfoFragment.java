@@ -31,14 +31,10 @@ public class DevInfoFragment extends Fragment {
 
     final int dev_img[] = {};
 
-    final String dev_name[] = {"HariKrishnan","Kiran","Nash Jacob John","Akanksha Shahi","Sivani Rupvat","Rahul R Y","Rahul Raj" };
-    final String dev_designation[] = {"Developer","Developer","Developer","DataBase","DataBase","Designer","Designer"};
-    final String dev_dept[] = {"BCA","BCA","BSc Computer Science","BCA","BCA","BCA","BCA" };
-    final String dev_year[] = {"3rd year","3rd year","3rd year","3rd year","3rd year","2nd year","3rd year" };
-
-
-
-    public DevInfoFragment() { }
+    final String dev_name[] = {"HariKrishnan", "Kiran", "Nash Jacob John", "Akanksha Shahi", "Sivani Rupvat", "Rahul R Y", "Rahul Raj"};
+    final String dev_designation[] = {"Developer", "Developer", "Developer", "DataBase", "DataBase", "Designer", "Designer"};
+    final String dev_dept[] = {"BCA", "BCA", "BSc Computer Science", "BCA", "BCA", "BCA", "BCA"};
+    final String dev_year[] = {"3rd year", "3rd year", "3rd year", "3rd year", "3rd year", "2nd year", "3rd year"};
 
 
     @Override
@@ -52,13 +48,10 @@ public class DevInfoFragment extends Fragment {
         devRecycler.setHasFixedSize(true);
         devRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-         dList.addAll(getDevData());
+        dList.addAll(getDevData());
 
         adapter = new DevInfoRecyclerViewAdapter(getContext(), dList, getActivity());
         devRecycler.setAdapter(adapter);
-
-
-
 
 
         return view;
@@ -66,25 +59,25 @@ public class DevInfoFragment extends Fragment {
 
     }
 
-    ArrayList<DevDataCell> getDevData(){
+    ArrayList<DevDataCell> getDevData() {
 
-         ArrayList<DevDataCell> devList = new ArrayList<>();
-        for(int i = 0; i < dev_name.length; i++){
+        ArrayList<DevDataCell> devList = new ArrayList<>();
+        for (int i = 0; i < dev_name.length; i++) {
 
-              DevDataCell cell = new DevDataCell();
-              //cell.setImg(dev_img[i]);
-              cell.setName(dev_name[i]);
-              cell.setDesination(dev_designation[i]);
-              cell.setDept(dev_dept[i]);
-              cell.setYear(dev_year[i]);
+            DevDataCell cell = new DevDataCell();
+            //cell.setImg(dev_img[i]);
+            cell.setName(dev_name[i]);
+            cell.setDesination(dev_designation[i]);
+            cell.setDept(dev_dept[i]);
+            cell.setYear(dev_year[i]);
 
-              devList.add(cell);
-              Log.i("DevInfo","Setting");
+            devList.add(cell);
+            Log.i("DevInfo", "Setting");
 
 
-          }
+        }
 
-          return devList;
+        return devList;
     }
 
 

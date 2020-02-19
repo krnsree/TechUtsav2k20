@@ -20,7 +20,7 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin"
         android:layout_marginTop="30dp"
-        app:titleTextColor="@color/White"
+        app:titleTextColor="@color/white"
         app:title="TECH UTSAV"
         />
     </com.google.android.material.appbar.AppBarLayout>

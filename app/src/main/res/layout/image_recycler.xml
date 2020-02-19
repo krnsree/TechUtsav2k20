@@ -30,7 +30,7 @@
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:elevation="5dp"
-                    android:background="@color/White"/>
+                    android:background="@color/white"/>
 
 
             </LinearLayout>

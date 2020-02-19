@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/alumni_name"
-                android:textColor="@color/White"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/alumni_designation"
-                android:textColor="@color/White"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -69,7 +69,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:text="@string/alumni_quote"
-            android:textColor="@color/White"
+            android:textColor="@color/white"
             android:textStyle="italic" />
 
 

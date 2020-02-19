@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.techutsav.fragments.MainActivity;
+import com.example.techutsav.fragments.MainActivityNew;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +45,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mySuperIntent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent mySuperIntent = new Intent(SplashScreen.this, MainActivityNew.class);
                 startActivity(mySuperIntent);
                 finish();
             }

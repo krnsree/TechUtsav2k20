@@ -5,7 +5,7 @@
     <color name="colorAccent">#ffffff</color>
     <color name="colorGreyDark">#8A8888</color>
     <color name="colorGrey"> #a9a9a9</color>
-    <color name="White">#ffffff</color>
+    <color name="white">#ffffff</color>
 
     //ToolBar color
     <color name="toolBarColor">#212121</color>

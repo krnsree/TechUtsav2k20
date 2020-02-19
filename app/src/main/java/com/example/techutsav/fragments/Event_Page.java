@@ -154,15 +154,6 @@ public class Event_Page extends Fragment {
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener((v, keyCode, event) -> {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                return true;
-            }
-            return false;
-        });
 
         eventNameShimmer.startShimmerAnimation();
         descShimmer.startShimmerAnimation();
@@ -171,9 +162,6 @@ public class Event_Page extends Fragment {
         cordteaShimmer.startShimmerAnimation();
 
         ptbtn.setOnClickListener(view1 -> {
-            /*ParticipantsList pl = new ParticipantsList(listData.getEventId());
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
-                    , pl).addToBackStack(null).commitAllowingStateLoss();*/
 
             passwordFragment pf = passwordFragment.newInstance("coordinators", listData.getEventId());
             pf.show(getActivity().getSupportFragmentManager(), "coordinators");
@@ -189,17 +177,6 @@ public class Event_Page extends Fragment {
 
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
-        bottomNavigationView.setVisibility(view.GONE);
-
-            // listData = gson.fromJson(list, new TypeToken<List<EventDataCell>>()
-            // {}.getType());
-            // Log.e(TAG, "onViewCreated: "+listData.getName() )
-
-    }
 
     private void putData() {
 
@@ -239,12 +216,6 @@ public class Event_Page extends Fragment {
 
     private void getCordinatorStudent() {
 
-       /* if (cordListStudentName != null && cordListStudentName.size() > 0) {
-            putCordinData(cordListStudentName, cordListStudentDept, "s");
-            cordstuShimmer.setVisibility(View.GONE);
-            cordstuShimmer.stopShimmerAnimation();
-            return;
-        } else {*/
         Log.e(TAG, "getCordinate " + listData.getEventId());
         ref.collection("co-ordinator(student)")
                 .whereEqualTo("eventid", listData.getEventId())
@@ -275,12 +246,6 @@ public class Event_Page extends Fragment {
 
     private void getCordinatorTeacher() {
 
-       /* if (cordListTeacherName != null && cordListTeacherName.size() > 0) {
-            putCordinData(cordListTeacherName, cordListTeacherDept, "t");
-            cordteaShimmer.stopShimmerAnimation();
-            cordteaShimmer.setVisibility(View.GONE);
-            return;
-        } else {*/
         Log.e(TAG, "getCordinate " + listData.getEventId());
         ref.collection("co-ordinator(admin)")
                 .whereEqualTo("eventid", listData.getEventId())
@@ -298,7 +263,7 @@ public class Event_Page extends Fragment {
 
                             }
                         }
-                        putCordinData(cordListTeacherName, cordListTeacherDept,null, "t");
+                        putCordinData(cordListTeacherName, cordListTeacherDept, null, "t");
                         cordteaShimmer.stopShimmerAnimation();
                         cordteaShimmer.setVisibility(View.GONE);
                     }
@@ -307,26 +272,27 @@ public class Event_Page extends Fragment {
         // }
     }
 
-    private void putCordinData(ArrayList<String> cordListName, ArrayList<String> cordListDept,ArrayList<Long> cordListContact ,String tag) {
+    private void putCordinData(ArrayList<String> cordListName, ArrayList<String> cordListDept, ArrayList<Long> cordListContact, String tag) {
 
         String str = " ";
 
-
-        if (tag.equals("s")) {
-            for (int i = 0; i < cordListName.size(); i++) {
-                str = str + (i + 1) + ").\t" + cordListName.get(i) + "\t\t-\t" + cordListDept.get(i) + " \t-\t" + String.valueOf(cordListContact.get(i))+"\n" ;
-                Log.e(TAG, "OnNames" + str);
+        try {
+            if (tag.equals("s")) {
+                for (int i = 0; i < cordListName.size(); i++) {
+                    str = str + (i + 1) + ").\t" + cordListName.get(i) + "\t\t-\t" + cordListDept.get(i) + " \t-\t" + String.valueOf(cordListContact.get(i)) + "\n";
+                    Log.e(TAG, "OnNames" + str);
+                }
+                cordinatorListStudent.setText(str);
+            } else if (tag.equals("t")) {
+                for (int i = 0; i < cordListName.size(); i++) {
+                    str = str + (i + 1) + ").\t" + cordListName.get(i) + "\t\t-\t" + cordListDept.get(i) + "\n";
+                    Log.e(TAG, "OnNames" + str);
+                }
+                cordinatorListTeacher.setText(str);
             }
-            cordinatorListStudent.setText(str);
+        }catch (Exception e){
+            Log.e(TAG, "putCordinData: "+e.getLocalizedMessage() );
         }
-        else if (tag.equals("t")) {
-            for (int i = 0; i < cordListName.size(); i++) {
-                str = str + (i + 1) + ").\t" + cordListName.get(i) + "\t\t-\t" + cordListDept.get(i) +"\n" ;
-                Log.e(TAG, "OnNames" + str);
-            }
-            cordinatorListTeacher.setText(str);
-        }
-
         putData();
     }
 }

@@ -2,6 +2,7 @@ package com.example.techutsav.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -77,9 +78,9 @@ public class EventFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event, container, false);
-        bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
+       /* bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.VISIBLE);
-
+*/
 
         //RecyclerView
         eventsList = view.findViewById(R.id.event_list);
@@ -88,13 +89,13 @@ public class EventFragment extends Fragment {
         adapter = new EventRecyclerViewAdapter(eventItems, getContext(), getActivity());
         eventsList.setAdapter(adapter);
 
-        shimmerFrameLayout=view.findViewById(R.id.parentShimmerLayout);
+        shimmerFrameLayout = view.findViewById(R.id.parentShimmerLayout);
 
         //Action Bar
-       eventActionBar(view);
+        eventActionBar(view);
 
-        collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_ev);
-        toolbar=view.findViewById(R.id.event_action_bar);
+        collapsingToolbar = view.findViewById(R.id.collapsing_toolbar_ev);
+        toolbar = view.findViewById(R.id.event_action_bar);
 
         collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         collapsingToolbar.setTitle("TechUtsav");
@@ -112,18 +113,7 @@ public class EventFragment extends Fragment {
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener((v, keyCode, event) -> {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                getActivity().finishAffinity();
-                return true;
-            }
-            return false;
-        });
 
-
-        getData();
 
         return view;
     }
@@ -132,6 +122,9 @@ public class EventFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onPause: 5");
+        eventItems.clear();
+        getData();
+
         //isDataAvailable = true;
         /*shimmerFrameLayout=getActivity().findViewById(R.id.parentShimmerLayout);
         shimmerFrameLayout.startShimmer();*/
@@ -152,6 +145,7 @@ public class EventFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        shimmerFrameLayout.startShimmerAnimation();
 
         /*if (isDataAvailable){
             pgbar.setVisibility(View.VISIBLE);
@@ -170,13 +164,19 @@ public class EventFragment extends Fragment {
         switch (item.getItemId()) {
 
             case R.id.event_action_info:
-                ((NavigationHost) getActivity()).navigateTo(new DevInfoFragment(), true);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
+                , new DevInfoFragment()).addToBackStack(null).commitAllowingStateLoss();
+//                ((NavigationHost) getActivity()).navigateTo(new DevInfoFragment(), true);
                 return true;
             case R.id.event_action_registration:
-                ((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
+                        , new RegistrationFragment()).addToBackStack(null).commitAllowingStateLoss();
+                //((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
                 return true;
-            case  R.id.generalRules:
-                ((NavigationHost) getActivity()).navigateTo(new GeneralRulesFragment(), true);
+            case R.id.generalRules:
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
+                        , new GeneralRulesFragment()).addToBackStack(null).commitAllowingStateLoss();
+               // ((NavigationHost) getActivity()).navigateTo(new GeneralRulesFragment(), true);
                 return true;
         }
 
@@ -186,66 +186,58 @@ public class EventFragment extends Fragment {
 
     private void getData() {
 
-        shimmerFrameLayout.startShimmerAnimation();
         ref = FirebaseFirestore.getInstance();
+        ref.collection("Events")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-        if (eventItems != null && eventItems.size() > 0) {
-            isDataAvailable=false;
-            return;
-        } else {
-            ref.collection("Events")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
 
-                            if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                if (documentSnapshot.exists()) {
 
-                                    if (documentSnapshot.exists()) {
+                                    Log.e(TAG, "onComplete: here");
 
-                                        Log.e(TAG, "onComplete: here" );
+                                    EventDataCell dataCell = new EventDataCell();
+                                    dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
+                                    dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
+                                    dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
+                                    dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
+                                    dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
+                                    dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
+                                    dataCell.setTitle(String.valueOf(documentSnapshot.getData().get("title")));
+                                    if (documentSnapshot.get("topic") != null) {
+                                        ArrayList<String> list = (ArrayList<String>) documentSnapshot.get("topic");
 
-                                        EventDataCell dataCell = new EventDataCell();
-                                        dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
-                                        dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
-                                        dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
-                                        dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
-                                        dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
-                                        dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
-                                        dataCell.setTitle(String.valueOf(documentSnapshot.getData().get("title")));
-                                        if (documentSnapshot.get("topic") != null) {
-                                            ArrayList<String> list = (ArrayList<String>) documentSnapshot.get("topic");
+                                        for (String item : list) {
 
-                                            for (String item : list) {
+                                            Log.e(TAG, "onComplete: " + item);
 
-                                                Log.e(TAG, "onComplete: " + item);
-
-                                            }
-                                            dataCell.setTopic(list);
+                                        }
+                                        dataCell.setTopic(list);
                                         /*for (String item : list) {
                                             Log.e(TAG, "onComplete: "+ Collections.singletonList(item));
                                             dataCell.setTopic(Collections.singletonList(item));
                                             Log.e(TAG, "onComplete: "+ dataCell.getTopic());
                                         }*/
-                                        }
-
-                                        eventItems.add(dataCell);
                                     }
+
+                                    eventItems.add(dataCell);
                                 }
-                                Log.e(TAG, "onComplete: "+eventItems.size() );
-                                adapter.notifyDataSetChanged();
-                                shimmerFrameLayout.stopShimmerAnimation();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-
                             }
-
+                            Log.e(TAG, "onComplete: " + eventItems.size());
+                            adapter.notifyDataSetChanged();
+                            shimmerFrameLayout.stopShimmerAnimation();
+                            shimmerFrameLayout.setVisibility(View.GONE);
 
                         }
-                    });
 
-        }
+
+                    }
+                });
 
 
     }
@@ -280,8 +272,7 @@ public class EventFragment extends Fragment {
         if (!isDataAvailable) {
             shimmerFrameLayout.stopShimmerAnimation();
             shimmerFrameLayout.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             shimmerFrameLayout.startShimmerAnimation();
         }

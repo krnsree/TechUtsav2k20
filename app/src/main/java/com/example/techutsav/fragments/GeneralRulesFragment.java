@@ -35,10 +35,6 @@ public class GeneralRulesFragment extends Fragment {
 
     FirebaseFirestore ref;
 
-    public GeneralRulesFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

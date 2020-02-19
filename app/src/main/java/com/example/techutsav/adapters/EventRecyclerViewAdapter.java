@@ -52,8 +52,6 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         holder.eventTitle.setText(eventList.get(position).getTitle());
         Glide.with(context)
                 .load(eventList.get(position).getImageUrl())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transition(withCrossFade())
                 .into(holder.eventImage);
 
         holder.itemView.setOnClickListener(view -> {
