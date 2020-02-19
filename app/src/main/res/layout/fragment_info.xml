@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.DevInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+       <com.google.android.material.appbar.MaterialToolbar
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           android:background="@color/colorPrimary"
+           app:title="@string/dev_toolbar_title"
+           app:titleTextColor="#ffffff"/>
+
+     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginBottom="56dp">
 
-</FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dev_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

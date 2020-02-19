@@ -170,7 +170,7 @@ public class EventFragment extends Fragment {
         switch (item.getItemId()) {
 
             case R.id.event_action_info:
-                ((NavigationHost) getActivity()).navigateTo(new InfoFragment(), true);
+                ((NavigationHost) getActivity()).navigateTo(new DevInfoFragment(), true);
                 return true;
             case R.id.event_action_registration:
                 ((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);

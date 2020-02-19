@@ -32,5 +32,21 @@
     //About
     <string name="about_title">About</string>
 
+    //Registration
+    <string name="reg_toolbar_title">Registration</string>
+    <string name="reg_msg">Will be Updated Soon</string>
+
+
+    //DevInfoCard
+    <string name="dev_name">Name</string>
+    <string name="dev_designation">Designation</string>
+    <string name="dev_dept">Department</string>
+    <string name="dev_year">Year</string>
+
+    //DevInfo
+    <string name="dev_toolbar_title">Developers</string>
+
+
+
 
 </resources>
