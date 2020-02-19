@@ -146,6 +146,8 @@ public class Event_Page extends Fragment {
 
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
             }
         }
 
