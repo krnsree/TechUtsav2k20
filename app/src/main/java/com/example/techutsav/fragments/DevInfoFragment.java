@@ -2,19 +2,19 @@ package com.example.techutsav.fragments;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techutsav.R;
 import com.example.techutsav.adapters.DevInfoRecyclerViewAdapter;
 import com.example.techutsav.models.DevDataCell;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -28,13 +28,17 @@ public class DevInfoFragment extends Fragment {
     DevInfoRecyclerViewAdapter adapter;
     ArrayList<DevDataCell> dList = new ArrayList<>();
 
+    FirebaseFirestore ref;
 
-    final int dev_img[] = {};
-
+    final int dev_images[]={R.drawable.hari,R.drawable.kiran,R.drawable.nash,R.drawable.akanksha,R.drawable.sivani,R.drawable.rahulj,R.drawable.rahul};
     final String dev_name[] = {"HariKrishnan", "Kiran", "Nash Jacob John", "Akanksha Shahi", "Sivani Rupvat", "Rahul R Y", "Rahul Raj"};
     final String dev_designation[] = {"Developer", "Developer", "Developer", "DataBase", "DataBase", "Designer", "Designer"};
     final String dev_dept[] = {"BCA", "BCA", "BSc Computer Science", "BCA", "BCA", "BCA", "BCA"};
     final String dev_year[] = {"3rd year", "3rd year", "3rd year", "3rd year", "3rd year", "2nd year", "3rd year"};
+
+
+    public DevInfoFragment() {
+    }
 
 
     @Override
@@ -43,6 +47,8 @@ public class DevInfoFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_info, container, false);
+
+        ref = FirebaseFirestore.getInstance();
 
         devRecycler = view.findViewById(R.id.dev_recycler);
         devRecycler.setHasFixedSize(true);
@@ -70,13 +76,10 @@ public class DevInfoFragment extends Fragment {
             cell.setDesination(dev_designation[i]);
             cell.setDept(dev_dept[i]);
             cell.setYear(dev_year[i]);
-
+            cell.setImg(dev_images[i]);
             devList.add(cell);
             Log.i("DevInfo", "Setting");
-
-
         }
-
         return devList;
     }
 
