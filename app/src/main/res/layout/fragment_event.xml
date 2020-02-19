@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:shimmer="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
-    android:background="@drawable/back1">
+    android:background="#000000">
 
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.appbar.AppBarLayout
@@ -38,8 +37,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:layout_marginTop="20dp"
-                />
+                android:layout_marginTop="20dp" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -50,9 +48,9 @@
         android:id="@+id/parentShimmerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:visibility="visible">
-        // 2
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,12 +61,9 @@
             <include layout="@layout/recycler_view_place_holder" />
 
             <include layout="@layout/recycler_view_place_holder" />
-
             <include layout="@layout/recycler_view_place_holder" />
 
-            <include layout="@layout/recycler_view_place_holder" />
 
-            <include layout="@layout/recycler_view_place_holder" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 

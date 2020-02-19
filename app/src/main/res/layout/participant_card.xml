@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/pt_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="20dp"
-                app:cardPreventCornerOverlap="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pt_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="20dp"
+    app:cardPreventCornerOverlap="true">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/serial_num"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="20dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:id="@+id/serial_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1"
-                                android:textSize="50dp"
-                                android:background="#ffffff"
-                                android:paddingTop="5dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingBottom="10dp"
-                                android:textColor="@color/colorPrimary"/>
+                    android:layout_gravity="center"
+                    android:background="#ffffff"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp"
+                    android:text="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="50dp" />
 
 
-                        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,26 +55,49 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/team_name"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/team_members"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Team Name:"
-                    android:textSize="17dp"
+                    android:text="Team Memebers:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Email:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/college_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/poppins_light"
-                    android:textSize="17dp"
                     android:text="College:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+
+
+                <TextView
+                    android:id="@+id/game"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Game:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -93,7 +117,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
@@ -112,68 +136,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/poppins_light"
-                    android:text="Representive:"
+                    android:text="Topic:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
                     android:textSize="17dp" />
 
                 <TextView
-                    android:id="@+id/team_rep"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/topic"
+
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/poppins_light"
-                    android:textColor="@android:color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Team Members:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/team_mem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:textColor="@android:color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Email:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:textColor="@android:color/white" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -194,7 +170,60 @@
 
                 <TextView
                     android:id="@+id/contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="BackUp Contact:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/backup_phno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Regno:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/regno"
+                    android:layout_width="match_parent"
+                    android:textSize="15dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/poppins_light"
@@ -202,9 +231,59 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Department:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/dept"
+                    android:layout_width="match_parent"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Squad Name:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/sqaud"
+                    android:layout_width="match_parent"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
         </LinearLayout>
 
-
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>

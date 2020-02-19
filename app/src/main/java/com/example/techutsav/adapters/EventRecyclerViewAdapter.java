@@ -49,12 +49,11 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     @Override
     public void onBindViewHolder(@NonNull VIewHolder holder, final int position) {
 
-        holder.eventTitle.setText(eventList.get(position).getName());
+        holder.eventTitle.setText(eventList.get(position).getTitle());
         Glide.with(context)
                 .load(eventList.get(position).getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .transition(withCrossFade())
-                .placeholder(R.drawable.placeholder)
                 .into(holder.eventImage);
 
         holder.itemView.setOnClickListener(view -> {

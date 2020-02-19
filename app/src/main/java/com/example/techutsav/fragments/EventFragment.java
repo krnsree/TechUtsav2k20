@@ -91,7 +91,7 @@ public class EventFragment extends Fragment {
         shimmerFrameLayout=view.findViewById(R.id.parentShimmerLayout);
 
         //Action Bar
-//        eventActionBar(view);
+       eventActionBar(view);
 
         collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_ev);
         toolbar=view.findViewById(R.id.event_action_bar);
@@ -138,7 +138,7 @@ public class EventFragment extends Fragment {
 
     }
 
-   /* private void eventActionBar(View view) {
+    private void eventActionBar(View view) {
 
         Toolbar toolbar = view.findViewById(R.id.event_action_bar);
         setHasOptionsMenu(true);
@@ -147,7 +147,7 @@ public class EventFragment extends Fragment {
             activity.setSupportActionBar(toolbar);
         }
 
-    }*/
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -169,14 +169,14 @@ public class EventFragment extends Fragment {
 
         switch (item.getItemId()) {
 
-            case R.id.event_action_schedule:
-                ((NavigationHost) getActivity()).navigateTo(new ScheduleFragment(), true);
-                return true;
             case R.id.event_action_info:
-                ((NavigationHost) getActivity()).navigateTo(new InfoFragment(), true);
+                ((NavigationHost) getActivity()).navigateTo(new DevInfoFragment(), true);
                 return true;
             case R.id.event_action_registration:
                 ((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
+                return true;
+            case  R.id.generalRules:
+                ((NavigationHost) getActivity()).navigateTo(new GeneralRulesFragment(), true);
                 return true;
         }
 
@@ -205,6 +205,8 @@ public class EventFragment extends Fragment {
 
                                     if (documentSnapshot.exists()) {
 
+                                        Log.e(TAG, "onComplete: here" );
+
                                         EventDataCell dataCell = new EventDataCell();
                                         dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
                                         dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
@@ -212,6 +214,7 @@ public class EventFragment extends Fragment {
                                         dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
                                         dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
                                         dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
+                                        dataCell.setTitle(String.valueOf(documentSnapshot.getData().get("title")));
                                         if (documentSnapshot.get("topic") != null) {
                                             ArrayList<String> list = (ArrayList<String>) documentSnapshot.get("topic");
 
@@ -231,7 +234,7 @@ public class EventFragment extends Fragment {
                                         eventItems.add(dataCell);
                                     }
                                 }
-
+                                Log.e(TAG, "onComplete: "+eventItems.size() );
                                 adapter.notifyDataSetChanged();
                                 shimmerFrameLayout.stopShimmerAnimation();
                                 shimmerFrameLayout.setVisibility(View.GONE);

@@ -1,17 +1,21 @@
 package com.example.techutsav.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -93,14 +97,36 @@ public class ImageViewFragment extends AppCompatDialogFragment {
         view = inflater.inflate(R.layout.image_fragment, container, false);
         ButterKnife.bind(this, view);
         dialog = new Dialog(getContext());
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        /*DisplayMetrics metrics = getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
-        getDialog().getWindow().setLayout((6 * width)/7, (6 * height)/7);
+        int height = metrics.heightPixels;*/
+
+        /*int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
+        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
+
+        dialog.getWindow().setLayout((int) (getScreenWidth(getActivity()) * .9), ViewGroup.LayoutParams.MATCH_PARENT);*/
+//        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+        Window dialogWindow = dialog.getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
+
+        lp.x = 100; // The new position of the X coordinates
+        lp.y = 100; // The new position of the Y coordinates
+        lp.width = 700; // Width
+        lp.height = 700; // Height
+        lp.alpha = 0.7f; // Transparency
+
+        // The system will call this function when the Window Attributes when the change, can be called directly by application of above the window parameters change, also can use setAttributes
+        // dialog.onWindowAttributesChanged(lp);
+        dialogWindow.setAttributes(lp);
+
 
         if (getArguments() != null) {
             imageCount = getArguments().getString("image_count");
         }
+
         productImageCloseTv.setOnClickListener(v -> getDialog().cancel());
         productImagesListRv.setHasFixedSize(true);
         productImagesListRv.setNestedScrollingEnabled(true);
@@ -112,6 +138,12 @@ public class ImageViewFragment extends AppCompatDialogFragment {
         loaderOn();
         new ConvertImage().execute();
         return view;
+    }
+
+    public static int getScreenWidth(Activity activity) {
+        Point size = new Point();
+        activity.getWindowManager().getDefaultDisplay().getSize(size);
+        return size.x;
     }
 
     private void loaderOn() {

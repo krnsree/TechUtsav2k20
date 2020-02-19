@@ -9,6 +9,7 @@ public class GalleryList {
 
 
     public int getgImagge() {
+
         return gImagge;
     }
 

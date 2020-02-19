@@ -16,8 +16,11 @@ import com.example.techutsav.R;
 import com.example.techutsav.adapters.PTAdapter;
 import com.example.techutsav.models.participantDetailCell;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -77,26 +80,17 @@ public class ParticipantsList extends Fragment {
 
         getData();
         ptadapter = new PTAdapter(listData, getContext());
-        pt_rv.setAdapter(ptadapter);
 
         return view;
     }
 
     private void getData() {
 
-
-        if (listData != null && listData.size() > 0) {
-            isDataAvailable = false;
-            loading.setVisibility(View.GONE);
-            loading.startShimmerAnimation();
-            return;
-        }
-
         FirebaseFirestore db=FirebaseFirestore.getInstance();
 
         loading.startShimmerAnimation();
-        db.collection("Participants")
-                .whereEqualTo("eventid", eventid)
+        db.collection("Participate")
+                .whereEqualTo("aEventID", eventid)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -106,33 +100,58 @@ public class ParticipantsList extends Fragment {
                             Log.e(TAG, "openAddbookDialog: " + task.getResult().size());
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 participantDetailCell pdcell = new participantDetailCell();
-                                pdcell.setCollege(String.valueOf(document.get("college")));
-                                pdcell.setEmail(String.valueOf(document.get("email")));
-                                pdcell.setEventid(String.valueOf(document.get("eventid")));
-                                pdcell.setTeam_name(String.valueOf(document.get("team_name")));
-                                pdcell.setTeam_rep(String.valueOf(document.get("team_rep")));
-                                Log.e(TAG, "getData: "+document.get("team_rep") );
-                                if (document.get("name") != null) {
-                                    ArrayList<String> name = (ArrayList<String>) document.get("name");
-                                    pdcell.setName(name);
+                                pdcell.setCollege(String.valueOf(document.get("bCollege")));
+                                pdcell.setEventID(String.valueOf(document.get("aEventID")));
+                                if(!document.get("aTopic").equals(" NULL")){
+                                    pdcell.setTopic(String.valueOf(document.get("aTopic")));
                                 }
-                                if (document.get("contact") != null) {
-                                    ArrayList<String> contact = (ArrayList<String>) document.get("contact");
-                                    pdcell.setContact(contact);
-                                }
+                                pdcell.setPhoneno(String.valueOf(document.get("cPhoneNo")));
+                                pdcell.setEmail(String.valueOf(document.get("eEmail")));
+                                pdcell.setParticipantName((ArrayList<String>) document.get("fParticipentName"));
+                                Log.e(TAG, "getData: "+pdcell.getParticipantName());
+                                pdcell.setParticipantRegno((ArrayList<String>) document.get("gParticipentRegno"));
+                                pdcell.setParticipantDept((ArrayList<String>) document.get("hParticipentDept"));
+                                pdcell.setBackupPhone(String.valueOf(document.get("dBackUpPhoneNo")));
 
+                                if(!document.get("aGameID").equals("NULL"))
+                                {
+                                    pdcell.setSquadName(String.valueOf(document.get("aSquadName")));
+                                    String s=String.valueOf(document.get("aGameID"));
+                                    FirebaseFirestore.getInstance()
+                                            .collection("Game")
+                                            .whereEqualTo("aGameID",s)
+                                            .get()
+                                            .addOnCompleteListener(task1 -> {
+
+                                                if (!task.getResult().isEmpty()){
+
+                                                    for(QueryDocumentSnapshot document1 : task1.getResult()){
+
+                                                        pdcell.setGame(String.valueOf(document1.get("name")));
+
+                                                    }
+
+                                                }
+
+                                            });
+                                }
                                 Log.e(TAG, "onGetData()" + pdcell.getCollege());
                                 listData.add(pdcell);
+
                             }
+                            Log.e(TAG, "getData: 00"+listData.size() );
+
+                            pt_rv.setAdapter(ptadapter);
+                            loading.setVisibility(View.GONE);
+                            loading.startShimmerAnimation();
+
                         } else {
                             pt_rv.setVisibility(View.GONE);
                             none.setVisibility(View.VISIBLE);
                         }
                     }
-
                     ptadapter.notifyDataSetChanged();
-                    loading.setVisibility(View.GONE);
-                    loading.startShimmerAnimation();
+
 
                 });
     }
