@@ -6,14 +6,15 @@
     android:layout_height="200dp"
     android:orientation="vertical"
     app:cardCornerRadius="0dp"
-    android:background="@drawable/back1"
+    android:background="@color/colorPrimary"
     app:cardPreventCornerOverlap="true">
 
     <ImageView
         android:id="@+id/gallery_image_view"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
+        android:padding="10dp"
         android:scaleType="centerCrop"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"/>
 
 </androidx.cardview.widget.CardView>

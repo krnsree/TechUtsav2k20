@@ -4,23 +4,63 @@ import java.util.ArrayList;
 
 public class participantDetailCell {
 
-    private ArrayList<String> contact,name;
-    String college,eventid,team_name,team_rep,email;
+    private ArrayList<String> participantName, participantRegno, participantDept;
+    private String eventID,squadName, topic, college, phoneno, backupPhone, email,game;
 
-    public ArrayList<String> getContact() {
-        return contact;
+    public String getGame() {
+        return game;
     }
 
-    public void setContact(ArrayList<String> contact) {
-        this.contact = contact;
+    public void setGame(String game) {
+        this.game = game;
     }
 
-    public ArrayList<String> getName() {
-        return name;
+    public String getEventID() {
+        return eventID;
     }
 
-    public void setName(ArrayList<String> name) {
-        this.name = name;
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
+    }
+
+    public ArrayList<String> getParticipantName() {
+        return participantName;
+    }
+
+    public void setParticipantName(ArrayList<String> participantName) {
+        this.participantName = participantName;
+    }
+
+    public ArrayList<String> getParticipantRegno() {
+        return participantRegno;
+    }
+
+    public void setParticipantRegno(ArrayList<String> participantRegno) {
+        this.participantRegno = participantRegno;
+    }
+
+    public ArrayList<String> getParticipantDept() {
+        return participantDept;
+    }
+
+    public void setParticipantDept(ArrayList<String> participantDept) {
+        this.participantDept = participantDept;
+    }
+
+    public String getSquadName() {
+        return squadName;
+    }
+
+    public void setSquadName(String squadName) {
+        this.squadName = squadName;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public String getCollege() {
@@ -31,28 +71,20 @@ public class participantDetailCell {
         this.college = college;
     }
 
-    public String getEventid() {
-        return eventid;
+    public String getPhoneno() {
+        return phoneno;
     }
 
-    public void setEventid(String eventid) {
-        this.eventid = eventid;
+    public void setPhoneno(String phoneno) {
+        this.phoneno = phoneno;
     }
 
-    public String getTeam_name() {
-        return team_name;
+    public String getBackupPhone() {
+        return backupPhone;
     }
 
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
-    }
-
-    public String getTeam_rep() {
-        return team_rep;
-    }
-
-    public void setTeam_rep(String team_rep) {
-        this.team_rep = team_rep;
+    public void setBackupPhone(String backupPhone) {
+        this.backupPhone = backupPhone;
     }
 
     public String getEmail() {

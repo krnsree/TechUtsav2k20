@@ -35,7 +35,8 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:layout_marginTop="13dp"/>
+                android:layout_marginTop="30dp" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -87,7 +88,6 @@
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@android:color/white"
                 android:textSize="26sp"/>
-
 
             <TextView
                 android:id="@+id/event_time"
@@ -305,21 +305,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="1"
                 android:layout_marginBottom="20dp">
 
                 <Button
-                    android:layout_width="175dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/rounded_button"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:backgroundTint="@color/White"
+                    android:textColor="@color/colorPrimary"
                     android:text="Participant\n List"
-                    android:id="@+id/participantbtn"/>
+                    android:id="@+id/participantbtn" />
 
                 <Button
-                    android:layout_width="175dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/rounded_button"
+                    android:layout_margin="5dp"
+                    android:layout_weight=".5"
+                    android:backgroundTint="@color/White"
+                    android:textColor="@color/colorPrimary"
                     android:text="Event\nResults"
                     android:id="@+id/resultbtn"/>
 

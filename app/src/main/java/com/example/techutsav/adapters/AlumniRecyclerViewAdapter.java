@@ -43,7 +43,7 @@ public class AlumniRecyclerViewAdapter extends RecyclerView.Adapter<AlumniRecycl
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alumni_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alumni_card_layout,parent,false);
         return new AlumniRecyclerViewAdapter.ViewHolder(view);
     }
 

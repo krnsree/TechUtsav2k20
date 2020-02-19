@@ -13,4 +13,8 @@
         android:id="@+id/event_action_info"
         android:title="@string/top_nav_info" />
 
+    <item
+        android:id="@+id/generalRules"
+        android:title="General Rules"/>
+
 </menu>

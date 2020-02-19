@@ -175,6 +175,9 @@ public class EventFragment extends Fragment {
             case R.id.event_action_registration:
                 ((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
                 return true;
+            case  R.id.generalRules:
+                ((NavigationHost) getActivity()).navigateTo(new GeneralRulesFragment(), true);
+                return true;
         }
 
         return false;

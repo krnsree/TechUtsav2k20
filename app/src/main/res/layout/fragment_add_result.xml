@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back1"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".fragments.AddResult">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="25dp"
-            android:background="#085078"
+            android:background="@color/colorPrimary"
             app:title="TechUtsav"
             app:titleTextColor="#ffffff" />
         app:titleTextAppearance="?attr/textAppearanceHeadline6" />
@@ -88,6 +88,8 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Add Member" />
 
@@ -98,6 +100,8 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Remove Member" />
 
@@ -234,6 +238,8 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"
                                 android:text="Add Member" />
 
                             <Button
@@ -243,6 +249,8 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="FINISH" />
 
@@ -309,7 +317,9 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="Add Member" />
+                                android:text="Add Member"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"/>
 
                             <Button
                                 android:id="@+id/finaltextViewRemove"
@@ -319,7 +329,9 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="Remove Member" />
+                                android:text="Remove Member"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"/>
 
 
                         </LinearLayout>
@@ -474,7 +486,9 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="Add Member" />
+                                android:text="Add Member"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"/>
 
                             <Button
                                 android:id="@+id/finalcloseCard"
@@ -484,7 +498,9 @@
                                 android:layout_marginRight="15dp"
                                 android:layout_weight=".5"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="FINISH" />
+                                android:text="FINISH"
+                                android:backgroundTint="@color/White"
+                                android:textColor="@color/colorPrimary"/>
 
 
                         </LinearLayout>
