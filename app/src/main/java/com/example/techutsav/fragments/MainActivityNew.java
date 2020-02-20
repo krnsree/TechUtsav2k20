@@ -1,5 +1,9 @@
 package com.example.techutsav.fragments;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +47,8 @@ public class MainActivityNew extends AppCompatActivity {
     LinearLayout alumniCard;
     @BindView(R.id.info_card)
     LinearLayout infoCard;
+    @BindView(R.id.register_link)
+    TextView registrationLink;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private static final int[] IMAGES = {R.drawable.title, R.drawable.adzap, R.drawable.alpha, R.drawable.bugbuster, R.drawable.cinephillia
@@ -62,6 +69,25 @@ public class MainActivityNew extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+
+        Context context;
+
+        registrationLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String urlString = "https://techutsav.in/";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setPackage("com.android.chrome");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    // Chrome browser presumably not installed so allow user to choose instead
+                    intent.setPackage(null);
+                    startActivity(intent);
+                }
+            }
+        });
 
        cards.setVisibility(View.VISIBLE);
         for (int i = 0; i < IMAGES.length; i++)
