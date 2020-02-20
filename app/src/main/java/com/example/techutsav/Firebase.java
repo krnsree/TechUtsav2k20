@@ -13,6 +13,8 @@ import com.example.techutsav.fragments.MainActivityNew;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 public class Firebase extends FirebaseMessagingService {
 
 
