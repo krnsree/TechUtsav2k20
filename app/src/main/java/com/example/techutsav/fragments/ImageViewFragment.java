@@ -80,16 +80,6 @@ public class ImageViewFragment extends AppCompatDialogFragment {
     private ArrayList<Bitmap> bitmaps = new ArrayList<>();
     private ProductImageListAdapter adapter;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        try {
-            getActivity().getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.MATCH_PARENT);
-        }catch (Exception e){
-            Log.e("Tag", "onCreate: "+e.getLocalizedMessage());
-        }
-    }
 
     @Nullable
     @Override
@@ -97,31 +87,6 @@ public class ImageViewFragment extends AppCompatDialogFragment {
         view = inflater.inflate(R.layout.image_fragment, container, false);
         ButterKnife.bind(this, view);
         dialog = new Dialog(getContext());
-        /*DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int width = metrics.widthPixels;
-        int height = metrics.heightPixels;*/
-
-        /*int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
-        int height = (int)(getResources().getDisplayMetrics().heightPixels*0.90);
-
-        dialog.getWindow().setLayout((int) (getScreenWidth(getActivity()) * .9), ViewGroup.LayoutParams.MATCH_PARENT);*/
-//        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
-        Window dialogWindow = dialog.getWindow();
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
-
-        lp.x = 100; // The new position of the X coordinates
-        lp.y = 100; // The new position of the Y coordinates
-        lp.width = 700; // Width
-        lp.height = 700; // Height
-        lp.alpha = 0.7f; // Transparency
-
-        // The system will call this function when the Window Attributes when the change, can be called directly by application of above the window parameters change, also can use setAttributes
-        // dialog.onWindowAttributesChanged(lp);
-        dialogWindow.setAttributes(lp);
-
 
         if (getArguments() != null) {
             imageCount = getArguments().getString("image_count");
@@ -140,11 +105,6 @@ public class ImageViewFragment extends AppCompatDialogFragment {
         return view;
     }
 
-    public static int getScreenWidth(Activity activity) {
-        Point size = new Point();
-        activity.getWindowManager().getDefaultDisplay().getSize(size);
-        return size.x;
-    }
 
     private void loaderOn() {
         imageLoader.setVisibility(View.VISIBLE);
@@ -259,9 +219,10 @@ public class ImageViewFragment extends AppCompatDialogFragment {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
 
-            Glide.with(mContext)
+            /*Glide.with(mContext)
                     .load(imageList.get(position))
-                    .into(holder.product_image_icon_iv);
+                    .into(holder.product_image_icon_iv);*/
+            holder.product_image_icon_iv.setImageBitmap(imageList.get(position));
         }
 
         @Override

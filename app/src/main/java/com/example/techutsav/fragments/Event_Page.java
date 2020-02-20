@@ -31,7 +31,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -106,6 +108,7 @@ public class Event_Page extends Fragment {
     static ArrayList<Long> cordListStudentContact = new ArrayList<>();
     static ArrayList<String> cordListTeacherName = new ArrayList<>();
     static ArrayList<String> cordListTeacherDept = new ArrayList<>();
+    private int position;
 
     public Event_Page(Context context1, FragmentActivity activity) {
         this.context = context1;
@@ -130,6 +133,7 @@ public class Event_Page extends Fragment {
 
         if (getArguments() != null) {
             String list = getArguments().getString("EVENT_DATA");
+            position = Integer.parseInt(getArguments().getString("POS"));
             Gson gson = new Gson();
             listData = gson.fromJson(list, EventDataCell.class);
             getCordinatorStudent();
@@ -183,10 +187,64 @@ public class Event_Page extends Fragment {
         eventName.setText(listData.getName());
         eventDesc.setText(listData.getDescription());
         eventTime.setText(listData.getTime());
-        Glide.with(context)
-                .load(listData.getImageUrl())
-                .placeholder(R.drawable.placeholder)
-                .into(eventPic);
+        Log.e(TAG, "putData: "+listData.getImageUrl() );
+
+        if (position == 0){
+            Glide.with(context)
+                    .load(R.drawable.paper)
+                    .placeholder(R.drawable.paper)
+                    .into(eventPic);
+        }else if (position == 1){
+            Glide.with(context)
+                    .load(R.drawable.poster)
+                    .placeholder(R.drawable.poster)
+                    .into(eventPic);
+        }else if (position == 2){
+            Glide.with(context)
+                    .load(R.drawable.fotographia)
+                    .placeholder(R.drawable.fotographia)
+                    .into(eventPic);
+        }else if (position == 3){
+            Glide.with(context)
+                    .load(R.drawable.mind_bender)
+                    .placeholder(R.drawable.mind_bender)
+                    .into(eventPic);
+        }else if (position == 4){
+            Glide.with(context)
+                    .load(R.drawable.alpha)
+                    .placeholder(R.drawable.alpha)
+                    .into(eventPic);
+        }else if (position == 5){
+            Glide.with(context)
+                    .load(R.drawable.bugbuster)
+                    .placeholder(R.drawable.bugbuster)
+                    .into(eventPic);
+        }else if (position == 6){
+            Glide.with(context)
+                    .load(R.drawable.adzap)
+                    .placeholder(R.drawable.adzap)
+                    .into(eventPic);
+        }else if (position == 7){
+            Glide.with(context)
+                    .load(R.drawable.troll)
+                    .placeholder(R.drawable.troll)
+                    .into(eventPic);
+        }else if (position == 9){
+            Glide.with(context)
+                    .load(R.drawable.special)
+                    .placeholder(R.drawable.special)
+                    .into(eventPic);
+        }else if (position == 10){
+            Glide.with(context)
+                    .load(R.drawable.cinephillia)
+                    .placeholder(R.drawable.cinephillia)
+                    .into(eventPic);
+        }else if (position == 8){
+            Glide.with(context)
+                    .load(R.drawable.xpresso)
+                    .placeholder(R.drawable.xpresso)
+                    .into(eventPic);
+        }
 
         if (listData.getTopic() != null) {
             topicsTitle.setVisibility(View.VISIBLE);

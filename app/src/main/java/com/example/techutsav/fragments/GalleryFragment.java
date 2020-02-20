@@ -6,10 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
@@ -82,7 +84,8 @@ public class GalleryFragment extends Fragment {
         galleryRecycler.setItemViewCacheSize(20);
         galleryRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
 
-
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.GONE);
         collapsingToolbar=view.findViewById(R.id.collapsing_toolbar_gl);
         toolbar=view.findViewById(R.id.event_action_bar_gl);
 
@@ -185,5 +188,12 @@ public class GalleryFragment extends Fragment {
     private void loaderOff() {
         imageLoader.setVisibility(View.GONE);
         galleryRecycler.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.VISIBLE);
+        Log.e("TAG", "onStop: " );
     }
 }

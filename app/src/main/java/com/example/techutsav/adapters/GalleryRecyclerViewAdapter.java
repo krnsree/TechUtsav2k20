@@ -49,10 +49,11 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
 
-        Glide.with(context)
-                .load(galleryLists.get(position))
-                .into(holder.galleryImage);
-        holder.galleryImage.setOnClickListener(v -> {
+//        Glide.with(context)
+//                .load(galleryLists.get(position))
+//                .into(holder.galleryImage);
+        holder.galleryImage.setImageBitmap(galleryLists.get(position));
+       /* holder.galleryImage.setOnClickListener(v -> {
             ImageViewFragment imageViewFragment = new ImageViewFragment();
             Bundle bundle = new Bundle();
             bundle.putString("image_count", String.valueOf(position));
@@ -60,7 +61,7 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
             imageViewFragment.show(activity.getSupportFragmentManager(), "");
 
 
-        });
+        });*/
     }
 
 

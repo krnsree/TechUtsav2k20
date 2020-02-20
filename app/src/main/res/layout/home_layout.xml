@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
+            android:id="@+id/cards"
             android:orientation="vertical">
 
             <LinearLayout
@@ -201,6 +202,15 @@
 
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To Register Click here!"
+                android:textColor="@color/white"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:id="@+id/register_link"/>
         </LinearLayout>
     </LinearLayout>
 

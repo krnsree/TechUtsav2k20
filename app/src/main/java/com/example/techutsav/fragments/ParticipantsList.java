@@ -89,7 +89,7 @@ public class ParticipantsList extends Fragment {
         FirebaseFirestore db=FirebaseFirestore.getInstance();
 
         loading.startShimmerAnimation();
-        db.collection("Participate")
+        db.collection("Participant")
                 .whereEqualTo("aEventID", eventid)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -107,10 +107,10 @@ public class ParticipantsList extends Fragment {
                                 }
                                 pdcell.setPhoneno(String.valueOf(document.get("cPhoneNo")));
                                 pdcell.setEmail(String.valueOf(document.get("eEmail")));
-                                pdcell.setParticipantName((ArrayList<String>) document.get("fParticipentName"));
+                                pdcell.setParticipantName((ArrayList<String>) document.get("fParticipantName"));
                                 Log.e(TAG, "getData: "+pdcell.getParticipantName());
-                                pdcell.setParticipantRegno((ArrayList<String>) document.get("gParticipentRegno"));
-                                pdcell.setParticipantDept((ArrayList<String>) document.get("hParticipentDept"));
+                                pdcell.setParticipantRegno((ArrayList<String>) document.get("gParticipantRegno"));
+                                pdcell.setParticipantDept((ArrayList<String>) document.get("hParticipantDept"));
                                 pdcell.setBackupPhone(String.valueOf(document.get("dBackUpPhoneNo")));
 
                                 if(!document.get("aGameID").equals("NULL"))

@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/gallery_image_view"
         android:layout_width="match_parent"
-        android:padding="10dp"
+        android:layout_margin="10dp"
         android:scaleType="centerCrop"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"/>

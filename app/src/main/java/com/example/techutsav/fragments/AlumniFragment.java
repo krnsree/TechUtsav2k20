@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,6 +62,7 @@ public class AlumniFragment extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,12 +92,13 @@ public class AlumniFragment extends Fragment {
             if (actionBar != null) {
             }
         }
-
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.GONE);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        shimmerFrameLayout.startShimmerAnimation();
 
-        getData();
 
         return view;
     }
@@ -103,22 +106,15 @@ public class AlumniFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getData();
+
 
     }
 
 
     void getData() {
 
-        shimmerFrameLayout.startShimmerAnimation();
-
-        if (alumniLists != null && alumniLists.size() > 0) {
-
-            shimmerFrameLayout.stopShimmerAnimation();
-            shimmerFrameLayout.setVisibility(View.GONE);
-            isDataAvailable = false;
-            return;
-        }
-
+        alumniLists.clear();
         db.collection("Alumni")
                 .orderBy("alumniid", Query.Direction.ASCENDING)
                 .get()
@@ -170,5 +166,13 @@ public class AlumniFragment extends Fragment {
         }
         Log.e(TAG, "onPause: 1");
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.VISIBLE);
+        Log.e("TAG", "onStop: " );
     }
 }

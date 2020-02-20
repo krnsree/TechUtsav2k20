@@ -6,10 +6,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionOverflowButtonStyle">@style/DotWhiteTheme</item>
+        <item name="android:windowDisablePreview">true</item>
+
 
     </style>
-
-
     <style name="DotWhiteTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">#ffffff</item>
     </style>

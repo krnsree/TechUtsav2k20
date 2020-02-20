@@ -50,9 +50,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     public void onBindViewHolder(@NonNull VIewHolder holder, final int position) {
 
         holder.eventTitle.setText(eventList.get(position).getTitle());
-        Glide.with(context)
-                .load(eventList.get(position).getImageUrl())
-                .into(holder.eventImage);
+        setImage(holder, position);
 
         holder.itemView.setOnClickListener(view -> {
             Gson gson = new Gson();
@@ -60,11 +58,73 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
             Bundle bundle = new Bundle();
             Log.e("Tag", "onBindViewHolder: "+position );
             bundle.putString("EVENT_DATA", list);
+            bundle.putString("POS", String.valueOf(position));
             Event_Page event_page = new Event_Page(context,activity);
             event_page.setArguments(bundle);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
             , event_page ).addToBackStack(null).commitAllowingStateLoss();
         });
+    }
+
+    private void setImage(VIewHolder holder, int position) {
+        if (position == 0){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.paper)
+                    .into(holder.eventImage);
+        }else if (position == 1){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.poster)
+                    .into(holder.eventImage);
+        }else if (position == 2){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.fotographia)
+                    .into(holder.eventImage);
+        }else if (position == 3){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.mind_bender)
+                    .into(holder.eventImage);
+        }else if (position == 4){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.alpha)
+                    .into(holder.eventImage);
+        }else if (position == 5){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.bugbuster)
+                    .into(holder.eventImage);
+        }else if (position == 6){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.adzap)
+                    .into(holder.eventImage);
+        }else if (position == 7){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.troll)
+                    .into(holder.eventImage);
+        }else if (position == 9){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.special)
+                    .into(holder.eventImage);
+        }else if (position == 10){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.cinephillia)
+                    .into(holder.eventImage);
+        }else if (position == 8){
+            Glide.with(context)
+                    .load(eventList.get(position).getImageUrl())
+                    .placeholder(R.drawable.xpresso)
+                    .into(holder.eventImage);
+        }
+
+
     }
 
 

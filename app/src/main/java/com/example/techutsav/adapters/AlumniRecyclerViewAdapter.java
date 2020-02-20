@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.techutsav.R;
 import com.example.techutsav.models.AlumniList;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -50,12 +51,16 @@ public class AlumniRecyclerViewAdapter extends RecyclerView.Adapter<AlumniRecycl
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Glide.with(context)
+
+        Picasso.with(context)
+                .load(aList.get(position).getImg()).into(holder.rImg);
+
+        /*Glide.with(context)
                 .load(aList.get(position).getImg())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .transition(withCrossFade())
                 .placeholder(R.drawable.placeholder)
-                .into(holder.rImg);
+                .into(holder.rImg);*/
         holder.rName.setText(aList.get(position).getName());
         holder.rDesignation.setText(aList.get(position).getDesignation());
         holder.rQuotes.setText(aList.get(position).getQuotes());

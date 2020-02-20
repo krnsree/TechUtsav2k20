@@ -2,9 +2,11 @@ package com.example.techutsav.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -42,8 +44,12 @@ public class MainActivityNew extends AppCompatActivity {
     LinearLayout infoCard;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private static final int[] IMAGES = {R.drawable.adzap, R.drawable.alpha, R.drawable.bugbuster, R.drawable.cinephillia
-    , R.drawable.fotographia, R.drawable.mind_bender, R.drawable.paper, R.drawable.poster};
+    private static final int[] IMAGES = {R.drawable.title, R.drawable.adzap, R.drawable.alpha, R.drawable.bugbuster, R.drawable.cinephillia
+            , R.drawable.fotographia, R.drawable.mind_bender, R.drawable.paper, R.drawable.poster};
+    @BindView(R.id.cards)
+    LinearLayout cards;
+    @BindView(R.id.mainFrame)
+    FrameLayout mainFrame;
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
 
@@ -57,7 +63,7 @@ public class MainActivityNew extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
-
+       cards.setVisibility(View.VISIBLE);
         for (int i = 0; i < IMAGES.length; i++)
             ImagesArray.add(IMAGES[i]);
 
@@ -89,7 +95,7 @@ public class MainActivityNew extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 3000, 3000);
+        }, 2000, 2000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -118,7 +124,7 @@ public class MainActivityNew extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.events_card:
                 getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
-                , new EventFragment()).addToBackStack(null).commitAllowingStateLoss();
+                        , new EventFragment()).addToBackStack(null).commitAllowingStateLoss();
                 break;
             case R.id.gallery_card:
                 getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
@@ -135,5 +141,34 @@ public class MainActivityNew extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("TAG", "onStop: ");
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("TAG", "onPause: ");
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("TAG", "onResume: ");
+        cards.setVisibility(View.VISIBLE);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        cards.setVisibility(View.VISIBLE);
+        Log.e("TAG", "onStart: ");
+    }
 }

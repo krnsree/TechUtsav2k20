@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
@@ -81,7 +82,8 @@ public class EventFragment extends Fragment {
        /* bottomNavigationView = getActivity().findViewById(R.id.main_bottom_nav);
         bottomNavigationView.setVisibility(view.VISIBLE);
 */
-
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.GONE);
         //RecyclerView
         eventsList = view.findViewById(R.id.event_list);
         eventsList.setHasFixedSize(true);
@@ -168,11 +170,11 @@ public class EventFragment extends Fragment {
                 , new DevInfoFragment()).addToBackStack(null).commitAllowingStateLoss();
 //                ((NavigationHost) getActivity()).navigateTo(new DevInfoFragment(), true);
                 return true;
-            case R.id.event_action_registration:
+            /*case R.id.event_action_registration:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
                         , new RegistrationFragment()).addToBackStack(null).commitAllowingStateLoss();
                 //((NavigationHost) getActivity()).navigateTo(new RegistrationFragment(), true);
-                return true;
+                return true;*/
             case R.id.generalRules:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame
                         , new GeneralRulesFragment()).addToBackStack(null).commitAllowingStateLoss();
@@ -206,7 +208,6 @@ public class EventFragment extends Fragment {
                                     dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
                                     dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
                                     dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
-                                    dataCell.setImageUrl(String.valueOf(documentSnapshot.getData().get("image")));
                                     dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));
                                     dataCell.setTitle(String.valueOf(documentSnapshot.getData().get("title")));
                                     if (documentSnapshot.get("topic") != null) {
@@ -255,14 +256,16 @@ public class EventFragment extends Fragment {
     public void onResume() {
         super.onResume();
         //pgbar.setVisibility(View.GONE);
-        Log.e(TAG, "onPause: 3");
+
+        Log.e("TAG", "onResume: " );
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.e(TAG, "onPause: 2");
-
+        LinearLayout cards = getActivity().findViewById(R.id.cards);
+        cards.setVisibility(View.VISIBLE);
+        Log.e("TAG", "onStop: " );
     }
 
 
@@ -276,15 +279,14 @@ public class EventFragment extends Fragment {
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             shimmerFrameLayout.startShimmerAnimation();
         }
-        Log.e(TAG, "onPause: 1");
-
+        Log.e("TAG", "onStart: " );
     }
 
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         isDataAvailable = true;
-        Log.e(TAG, "onPause: 0");
 
+        Log.e("TAG", "onAttach: " );
     }
 
 }
