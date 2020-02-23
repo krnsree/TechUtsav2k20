@@ -102,6 +102,7 @@ public class ParticipantsList extends Fragment {
                                 participantDetailCell pdcell = new participantDetailCell();
                                 pdcell.setCollege(String.valueOf(document.get("bCollege")));
                                 pdcell.setEventID(String.valueOf(document.get("aEventID")));
+                                Log.e(TAG, "Game: "+eventid);
                                 if(!document.get("aTopic").equals(" NULL")){
                                     pdcell.setTopic(String.valueOf(document.get("aTopic")));
                                 }
@@ -113,28 +114,22 @@ public class ParticipantsList extends Fragment {
                                 pdcell.setParticipantDept((ArrayList<String>) document.get("hParticipantDept"));
                                 pdcell.setBackupPhone(String.valueOf(document.get("dBackUpPhoneNo")));
 
-                                if(!document.get("aGameID").equals("NULL"))
+                                Log.e(TAG, "Game"+ document.get("aGameID"));
+
+                                if(document.get("aGameID").equals("game01"))
                                 {
                                     pdcell.setSquadName(String.valueOf(document.get("aSquadName")));
-                                    String s=String.valueOf(document.get("aGameID"));
-                                    FirebaseFirestore.getInstance()
-                                            .collection("Game")
-                                            .whereEqualTo("aGameID",s)
-                                            .get()
-                                            .addOnCompleteListener(task1 -> {
-
-                                                if (!task.getResult().isEmpty()){
-
-                                                    for(QueryDocumentSnapshot document1 : task1.getResult()){
-
-                                                        pdcell.setGame(String.valueOf(document1.get("name")));
-
-                                                    }
-
-                                                }
-
-                                            });
+                                    pdcell.setGame("PUBG");
                                 }
+                                else if(document.get("aGameID").equals("game02"))
+                                {
+                                    pdcell.setGame("Blur");
+                                }
+                                else if(document.get("aGameID").equals("game03"))
+                                {
+                                    pdcell.setGame("Counter Strike");
+                                }
+
                                 Log.e(TAG, "onGetData()" + pdcell.getCollege());
                                 listData.add(pdcell);
 

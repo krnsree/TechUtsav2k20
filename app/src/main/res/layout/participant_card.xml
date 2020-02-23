@@ -8,7 +8,8 @@
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
     app:cardElevation="20dp"
-    app:cardPreventCornerOverlap="true">
+    app:cardPreventCornerOverlap="true"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="10dp">
 
@@ -34,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="#ffffff"
+                    android:background="@color/white"
                     android:paddingLeft="20dp"
                     android:paddingTop="5dp"
                     android:paddingRight="20dp"
@@ -61,7 +62,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Team Memebers:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="17dp" />
                 <TextView
                     android:id="@+id/team_members"
@@ -71,7 +72,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Team Memebers:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
                 <TextView
@@ -81,7 +82,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Email:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="17dp" />
 
                 <TextView
@@ -92,7 +93,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Email:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
                 <TextView
@@ -102,7 +103,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="College:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="17dp" />
 
                 <TextView
@@ -113,7 +114,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="College:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
 
@@ -125,7 +126,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:text="Game:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="17dp" />
 
             </LinearLayout>

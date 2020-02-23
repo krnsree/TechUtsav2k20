@@ -83,7 +83,7 @@ public class PTAdapter extends RecyclerView.Adapter<PTAdapter.ViewHolder> {
             }
 
 
-            if (listData.get(position).getEventID().equals("eve05")) {
+            if (listData.get(position).getEventID().equals("eve06")) {
                 if (listData.get(position).getGame().equals("PUBG")) {
                     holder.squad.setText(listData.get(position).getSquadName());
                 } else
