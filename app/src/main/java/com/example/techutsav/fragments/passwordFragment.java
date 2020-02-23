@@ -59,6 +59,13 @@ public class passwordFragment extends BottomSheetDialogFragment {
 
         ref=FirebaseFirestore.getInstance();
 
+        confirm.setOnClickListener(view1 -> passcnf());
+
+        return view;
+    }
+
+    private void passcnf() {
+        Log.e("Tag", "passcnf: "+Password );
         ref.collection("Password")
                 .whereEqualTo("type",passType)
                 .get()
@@ -76,14 +83,6 @@ public class passwordFragment extends BottomSheetDialogFragment {
 
 
                 });
-
-        confirm.setOnClickListener(view1 -> passcnf());
-
-        return view;
-    }
-
-    private void passcnf() {
-        Log.e("Tag", "passcnf: "+Password );
         try {
             if (Password.equals(password.getText().toString())) {
                 if (passType.equals("coordinators")){
