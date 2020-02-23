@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="10dp">
 
@@ -55,6 +55,15 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Team Memebers:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+                <TextView
                     android:id="@+id/team_members"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,6 +73,16 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Email:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
 
                 <TextView
                     android:id="@+id/email"
@@ -77,7 +96,6 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/college_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -86,6 +104,17 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
                     android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/college_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="College:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
 
 
                 <TextView
@@ -97,7 +126,7 @@
                     android:text="Game:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@android:color/white"
-                    android:textSize="15dp" />
+                    android:textSize="17dp" />
 
             </LinearLayout>
 

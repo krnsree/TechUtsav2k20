@@ -143,9 +143,12 @@ public class ParticipantsList extends Fragment {
 
                             pt_rv.setAdapter(ptadapter);
                             loading.setVisibility(View.GONE);
-                            loading.startShimmerAnimation();
+                            loading.stopShimmerAnimation();
 
                         } else {
+
+                            loading.setVisibility(View.GONE);
+                            loading.stopShimmerAnimation();
                             pt_rv.setVisibility(View.GONE);
                             none.setVisibility(View.VISIBLE);
                         }

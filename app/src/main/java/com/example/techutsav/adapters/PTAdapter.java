@@ -68,13 +68,13 @@ public class PTAdapter extends RecyclerView.Adapter<PTAdapter.ViewHolder> {
                     s2 = s2 + listData.get(position).getParticipantRegno().get(i)+ ", ";
 
             }
-            holder.teammem.setText("Team Memeber: "+s);
+            holder.teammem.setText(s);
             holder.dept.setText(s1);
             holder.regno.setText(s2);
-            holder.email.setText("Email: "+listData.get(position).getEmail());
+            holder.email.setText(listData.get(position).getEmail());
             holder.buphno.setText(listData.get(position).getBackupPhone());
             holder.contact.setText(listData.get(position).getPhoneno());
-            holder.college.setText("College: "+listData.get(position).getCollege());
+            holder.college.setText(listData.get(position).getCollege());
 
             if (listData.get(position).getEventID().equals("eve01") || listData.get(position).getEventID().equals("eve02")) {
                 holder.topic.setText(listData.get(position).getTopic());
@@ -88,7 +88,7 @@ public class PTAdapter extends RecyclerView.Adapter<PTAdapter.ViewHolder> {
                     holder.squad.setText(listData.get(position).getSquadName());
                 } else
                     holder.squad.setVisibility(View.GONE);
-                holder.game.setText(listData.get(position).getGame());
+                holder.game.setText("Game:"+listData.get(position).getGame());
             } else {
                 holder.game.setVisibility(View.GONE);
                 holder.squad.setVisibility(View.GONE);
