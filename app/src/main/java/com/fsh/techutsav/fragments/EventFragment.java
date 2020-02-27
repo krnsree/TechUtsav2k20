@@ -202,6 +202,7 @@ public class EventFragment extends Fragment {
                                     EventDataCell dataCell = new EventDataCell();
                                     dataCell.setName(String.valueOf(documentSnapshot.getData().get("Name")));
                                     dataCell.setDate(String.valueOf(documentSnapshot.getData().get("date")));
+                                    dataCell.setVenue(String.valueOf(documentSnapshot.getData().get("Venue")));
                                     dataCell.setDescription(String.valueOf(documentSnapshot.getData().get("description")));
                                     dataCell.setEventId(String.valueOf(documentSnapshot.getData().get("eventid")));
                                     dataCell.setTime(String.valueOf(documentSnapshot.getData().get("time")));

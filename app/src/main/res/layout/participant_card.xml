@@ -152,7 +152,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_light"
-                android:text="Other Deatails:"
+                android:text="Other Details:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="@android:color/white" />
 

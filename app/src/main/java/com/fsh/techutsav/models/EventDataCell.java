@@ -12,8 +12,12 @@ public class EventDataCell {
     private String eventId;
     private String imageUrl;
     private String time;
+    private String venue;
     private ArrayList<String> topic;
 
+    public String getVenue() { return venue; }
+
+    public void setVenue(String venue) { this.venue = venue; }
 
     public String getName() {
         return name;
