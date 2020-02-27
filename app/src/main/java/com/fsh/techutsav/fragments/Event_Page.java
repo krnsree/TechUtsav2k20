@@ -43,6 +43,12 @@ public class Event_Page extends Fragment {
     @BindView(R.id.event_time)
     TextView eventTime;
 
+    @BindView(R.id.event_date)
+    TextView eventDate;
+
+    @BindView(R.id.event_venue)
+    TextView eventVenue;
+
     @BindView(R.id.event_description)
     TextView eventDesc;
 
@@ -185,7 +191,9 @@ public class Event_Page extends Fragment {
 
         eventName.setText(listData.getName());
         eventDesc.setText(listData.getDescription());
-        eventTime.setText(listData.getTime());
+        eventTime.setText("Time"+listData.getTime());
+        eventDate.setText("Date:"+listData.getDate());
+        eventVenue.setText("Venue:"+listData.getVenue());
         Log.e(TAG, "putData: "+listData.getImageUrl() );
 
         if (position == 0){

@@ -87,7 +87,7 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@android:color/white"
-                android:textSize="26sp"/>
+                android:textSize="32sp"/>
 
             <TextView
                 android:id="@+id/event_time"
@@ -95,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:textSize="17dp"
                 android:fontFamily="@font/poppins_light"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white" />
@@ -105,6 +106,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/event_venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:textSize="17sp"
                 android:fontFamily="@font/poppins_light"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white" />
